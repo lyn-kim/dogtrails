@@ -1,0 +1,67 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "eslint:recommended",
+    "standard"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "semi": [
+      "error",
+      "always"
+    ],
+    "padded-blocks": 0,
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "curly": [
+      "error",
+      "multi-line"
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.jsx"
+      ],
+      "rules": {
+        "react/prop-types": 0
+      }
+    },
+    {
+      "files": [
+        "**/*.html"
+      ],
+      "plugins": [
+        "eslint-plugin-html"
+      ]
+    }
+  ]
+}
