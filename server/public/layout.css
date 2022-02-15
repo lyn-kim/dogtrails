@@ -1,0 +1,93 @@
+.hidden {
+  display: none !important;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.fixed {
+  position: fixed;
+  overflow-y: scroll;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column-full,
+.column-half,
+.column-three-fifth {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  div.column-half,
+  div > .column-full {
+    padding-right: 0;
+  }
+
+  .column-two-fifth {
+    width: 0;
+  }
+
+  div.column-three-fourth.trail-name {
+    width: calc(100% / 4 * 3);
+  }
+
+  div.column-fourth.trail-name {
+    width: calc(100% / 4 * 1);
+  }
+
+  .trail-name {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .column-full,
+  .column-half {
+    padding: 0 1rem;
+  }
+
+  .column-half {
+    width: 50%;
+  }
+
+  .column-fourth {
+    width: calc(100% / 4 * 1);
+  }
+
+  .column-three-fourth {
+    width: calc(100% / 4 * 3);
+  }
+
+  .column-three-fifth {
+    width: calc(100% / 5 * 3);
+  }
+
+  .column-two-fifth {
+    width: calc(100% / 5 * 2);
+  }
+}
+
+div > .column-half,
+/* div > .column-full, */
+div.column-half,
+.column-full {
+  /* padding-left: 0; */
+  padding-right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    min-width: 375px;
+  }
+}
