@@ -34,14 +34,15 @@ module.exports = {
     port: process.env.DEV_SERVER_PORT,
     static: {
       directory: serverPublicPath,
-      publicPath: '/',
-      watch: true
+      watch: {
+        ignored: path.join(serverPublicPath, 'images')
+      }
     },
     proxy: {
       '/api': `http://localhost:${process.env.PORT}`
     }
   },
-  stats: 'summary',
+  stats: 'minimal',
   performance: {
     hints: false
   }

@@ -32,7 +32,7 @@ CREATE TABLE "public"."trails" (
 	"trailId" serial NOT NULL,
 	"userId" integer NOT NULL,
 	"trailName" TEXT NOT NULL,
-	"length" integer NOT NULL,
+	"length" float4 NOT NULL,
 	"difficulty" TEXT NOT NULL,
 	"location" TEXT NOT NULL,
 	"photoUrl" TEXT NOT NULL,

@@ -7,6 +7,7 @@ const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
 const authorizationMiddleware = require('./authorization-middleware');
+const uploadsMiddleware = require('./uploads-middleware');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -80,7 +81,7 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 
 app.use(authorizationMiddleware);
 
-app.post('/api/trails', (req, res, next) => {
+app.post('/api/trails', uploadsMiddleware, (req, res, next) => {
   const { userId } = req.user;
   const { trailName, length, difficulty, location, isDeleted } = req.body;
   if (!trailName || !length || !difficulty || !location || !isDeleted) {
@@ -101,6 +102,18 @@ app.post('/api/trails', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+// app.get('/api/images', (req, res, next) => {
+//   const sql = `
+//     select *
+//       from "images"
+//   `;
+//   db.query(sql)
+//     .then(result => {
+//       res.json(result.rows);
+//     })
+//     .catch(err => next(err));
+// });
 
 // app.get('/api/trails', (req, res, next) => {
 //   const { userId } = req.user;
