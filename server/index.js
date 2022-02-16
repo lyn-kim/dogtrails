@@ -21,7 +21,6 @@ const jsonMiddleware = express.json();
 
 app.use(jsonMiddleware);
 app.use(staticMiddleware);
-app.use(errorMiddleware);
 
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;

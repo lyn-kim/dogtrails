@@ -54,7 +54,10 @@ export default class App extends React.Component {
 
     fetch('/api/trails', {
       method: 'POST',
-      body: formData
+      body: formData,
+      headers: {
+        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NDQ5ODUzMDV9._rB4niNTeXmag4gDIKl8ZGfmX97J93ftxokqoOV0wmU'
+      }
     })
       .then(res => res.json())
       .then(result => {
