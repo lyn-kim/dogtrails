@@ -16,65 +16,8 @@
 <body>
   <div id="root">
 
-    <div class="container">
 
-      <div class="navbar">
-        <div class="row space-between">
-          <div>
-            <span class="display-flex"><i class="fas fa-mountain logo"></i>
-              <h1 class="logo-font"> DogTrails</h1>
-            </span>
-          </div>
-          <ul class="nav-list">
-            <li class="nav-links"><a>SAVED</a></li>
-            <li class="nav-links"><a>LIST</a></li>
-            <li class="nav-links"><a><i class="fas fa-user"></i></a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row justify-center">
-        <h3 class="add-trail-title">Add A Trail</h3>
-      </div>
-      <form id="entry-form">
-        <div class="row">
-          <div class="column-half">
-            <div class="image-submit-box">
-              <label for="img-upload" class="image-upload-button">
-                <i class="fas fa-plus-circle plus-button"></i>
-              </label>
-              <input id="img-upload" type="file">
-            </div>
-          </div>
-          <div class="column-half">
-            <label for="trail-name">
-              <p class="input-title">Name:</p>
-              <input id="trailTitle" type="text" class="input-box" name="title" required="required">
-            </label>
-            <label for="trail-length">
-              <p class="input-title">Length:</p>
-              <input id="lengthTitle" type="number" class="input-box" name="length" required="required" min="0" step="0.1">
-            </label>
-            <label for="trail-address">
-              <p class="input-title">Address:</p>
-              <input id="addressTitle" type="text" class="input-box" name="address" required="required">
-            </label>
-            <label for="trail-difficulty">
-              <p class="input-title">Difficulty:</p>
-              <select class="dropdown" id="difficulty" required>
-                <option value="easy">Easy</option>
-                <option value="moderate">Moderate</option>
-                <option value="difficult">Difficult</option>
-              </select>
-            </label>
-            <div class="submit-button">
-              <button class="submit-text" type="submit">SUBMIT</button>
-            </div>
-          </div>
-        </div>
-      </form>
-
-      <!-- <div class="row justify-center">
+    <!-- <div class="row justify-center">
           <h3 class="add-trail-title">Trail List</h3>
         </div>
 
@@ -106,8 +49,6 @@
             <img class="trail-img" src="images/placeholder-image-square.jpg" alt="image of trail">
           </div>
         </div> -->
-
-    </div>
 
 
   </div>
