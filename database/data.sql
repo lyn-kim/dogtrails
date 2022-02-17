@@ -1,0 +1,2 @@
+-- insert into "trails" ("userId", "trailName", "length", "difficulty", "location", "photoUrl", "isDeleted")
+-- values (1, 'Black Star Canyon Falls', 6.7, 'Moderate', '10967 Black Star Canyon Rd, Silverado, CA 92676', '/images/bsctrail.jpg', 'false');

@@ -1,17 +1,8 @@
-set client_min_messages to warning;
-
--- DANGER: this is NOT how to do it in the real world.
--- `drop schema` INSTANTLY ERASES EVERYTHING.
-drop schema "public" cascade;
-
-create schema "public";
-
 CREATE TABLE "public"."users" (
 	"userId" serial NOT NULL,
 	"username" TEXT NOT NULL UNIQUE,
 	"hashedPassword" TEXT NOT NULL,
-  "joinedAt" timestamptz(6) not null default now(),
-
+	"joinedAt" timestamptz NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
@@ -32,7 +23,7 @@ CREATE TABLE "public"."trails" (
 	"trailId" serial NOT NULL,
 	"userId" integer NOT NULL,
 	"trailName" TEXT NOT NULL,
-	"length" float4 NOT NULL,
+	"length" integer NOT NULL,
 	"difficulty" TEXT NOT NULL,
 	"location" TEXT NOT NULL,
 	"photoUrl" TEXT NOT NULL,
