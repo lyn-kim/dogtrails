@@ -46,9 +46,13 @@
     width: calc(100% / 4 * 1);
   }
 
-  .trail-name {
-    margin-bottom: 0;
+  /* .trail-name {
+    margin-bottom: 0.7rem;
   }
+
+  .trail-address {
+    margin-top: 0.9rem;
+  } */
 }
 
 @media screen and (min-width: 768px) {

@@ -1,5 +1,5 @@
 import React from 'react';
-// import Home from './pages/home';
+import Header from './components/header';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,12 +17,8 @@ export default class App extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleLengthChange = this.handleLengthChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
   }
-
-  // onImageChange(event) {
-  //   console.log('Image Attached');
-  //   console.log('event.target.files[0]:', event.target.files[0]);
-  // }
 
   handleDifficultyChange(event) {
     this.setState({ difficulty: event.target.value });
@@ -38,6 +34,10 @@ export default class App extends React.Component {
 
   handleAddressChange(event) {
     this.setState({ location: event.target.value });
+  }
+
+  handleImageChange(event) {
+    this.setState({ previewImageUrl: URL.createObjectURL(event.target.files[0]) });
   }
 
   handleSubmit(event) {
@@ -56,7 +56,7 @@ export default class App extends React.Component {
       method: 'POST',
       body: formData,
       headers: {
-        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NDQ5ODUzMDV9._rB4niNTeXmag4gDIKl8ZGfmX97J93ftxokqoOV0wmU'
+        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NDUwNTQxMjN9.U7xEy90BDboZkB6FyU4I_1rbO6bLDilv2wKXT80Eo1Y'
       }
     })
       .then(res => res.json())
@@ -66,7 +66,8 @@ export default class App extends React.Component {
           length: '',
           difficulty: '',
           location: '',
-          isDeleted: false
+          isDeleted: false,
+          previewImageUrl: null
         });
         this.fileInputRef.current.value = null;
       })
@@ -75,95 +76,85 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <>
+        <div className="container">
 
-        <div className="navbar">
-          <div className="row space-between">
-            <div>
-              <span className="display-flex"><i className="fas fa-mountain logo"></i>
-                <h1 className="logo-font"> DogTrails</h1>
-              </span>
-            </div>
-            <ul className="nav-list">
-              <li className="nav-links"><a>SAVED</a></li>
-              <li className="nav-links"><a>LIST</a></li>
-              <li className="nav-links"><a><i className="fas fa-user"></i></a></li>
-            </ul>
+          <Header/>
+
+          <div className="row justify-center">
+            <h3 className="add-trail-title">Add A Trail</h3>
           </div>
-        </div>
-
-        <div className="row justify-center">
-          <h3 className="add-trail-title">Add A Trail</h3>
-        </div>
-        <form id="entry-form" onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="column-half">
-              <div className="image-submit-box">
-                <label htmlFor="img-upload" className="image-upload-button">
-                  <i className="fas fa-plus-circle plus-button"></i>
+          <form id="entry-form" onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="column-half">
+                <div className="image-submit-box" style={this.state.previewImageUrl ? { backgroundImage: `url(${this.state.previewImageUrl})` } : null}>
+                  <label htmlFor="img-upload" className="image-upload-button">
+                    <i className="fas fa-plus-circle plus-button"></i>
+                  </label>
+                  <input
+                    required
+                    type="file"
+                    name="image"
+                    ref={this.fileInputRef}
+                    onChange={this.handleImageChange}
+                    accept="image/*"
+                    id="img-upload" />
+                </div>
+              </div>
+              <div className="column-half">
+                <label htmlFor="trail-name">
+                  <p className="input-title">Name:</p>
+                  <input
+                    required
+                    id="trailTitle"
+                    type="text"
+                    className="input-box"
+                    name="title"
+                    value={this.state.trailName}
+                    onChange={this.handleNameChange} />
                 </label>
-                <input
-                  required
-                  type="file"
-                  name="image"
-                  ref={this.fileInputRef}
-                  // onChange={this.onImageChange}
-                  accept=".png, .jpg, .jpeg, .gif"
-                  id="img-upload" />
+                <label htmlFor="trail-length">
+                  <p className="input-title">Length:</p>
+                  <input
+                    required
+                    id="lengthTitle"
+                    type="number"
+                    className="input-box"
+                    name="length"
+                    value={this.state.length}
+                    onChange={this.handleLengthChange}
+                    min="0"
+                    step="0.1"/>
+                </label>
+                <label htmlFor="trail-address">
+                  <p className="input-title">Address:</p>
+                  <input
+                    required
+                    id="addressTitle"
+                    type="text"
+                    className="input-box"
+                    name="address"
+                    value={this.state.location}
+                    onChange={this.handleAddressChange} />
+                </label>
+                <label htmlFor="trail-difficulty">
+                  <p className="input-title">Difficulty:</p>
+                  <select className="dropdown" id="difficulty" onChange={this.handleDifficultyChange} required>
+                    <option value="easy">Easy</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="difficult">Difficult</option>
+                  </select>
+                </label>
+                <div className="submit-button">
+                  <button className="submit-text" type="submit">SUBMIT</button>
+                </div>
               </div>
             </div>
-            <div className="column-half">
-              <label htmlFor="trail-name">
-                <p className="input-title">Name:</p>
-                <input
-                  required
-                  id="trailTitle"
-                  type="text"
-                  className="input-box"
-                  name="title"
-                  value={this.state.trailName}
-                  onChange={this.handleNameChange} />
-              </label>
-              <label htmlFor="trail-length">
-                <p className="input-title">Length:</p>
-                <input
-                  required
-                  id="lengthTitle"
-                  type="number"
-                  className="input-box"
-                  name="length"
-                  value={this.state.length}
-                  onChange={this.handleLengthChange}
-                  min="0"
-                  step="0.1"/>
-              </label>
-              <label htmlFor="trail-address">
-                <p className="input-title">Address:</p>
-                <input
-                  required
-                  id="addressTitle"
-                  type="text"
-                  className="input-box"
-                  name="address"
-                  value={this.state.location}
-                  onChange={this.handleAddressChange} />
-              </label>
-              <label htmlFor="trail-difficulty">
-                <p className="input-title">Difficulty:</p>
-                <select className="dropdown" id="difficulty" onChange={this.handleDifficultyChange} required>
-                  <option value="easy">Easy</option>
-                  <option value="moderate">Moderate</option>
-                  <option value="difficult">Difficult</option>
-                </select>
-              </label>
-              <div className="submit-button">
-                <button className="submit-text" type="submit">SUBMIT</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+          </form>
+
+        </div>
+
+      </>
     );
-    // return <Home />;
   }
 }

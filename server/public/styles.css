@@ -11,8 +11,16 @@
   display: flex;
 }
 
+.display-block {
+  display: block;
+}
+
 .justify-center {
   justify-content: center;
+}
+
+.align-content-center {
+  align-content: center;
 }
 
 .position-relative {
@@ -21,6 +29,10 @@
 
 .position-absolute {
   position: absolute;
+}
+
+.text-align-center {
+  text-align: center;
 }
 
 .text-align-end {
@@ -34,6 +46,7 @@
 }
 
 .logo-font {
+  margin-top: 1.2rem;
   font-size: 1.8rem;
   font-weight: 600;
   text-decoration: none;
@@ -75,6 +88,7 @@ ul.nav-list {
   margin-bottom: 1.5rem;
   justify-content: center;
   align-items: center;
+  background-size: cover;
 }
 
 .image-upload-button {
@@ -191,6 +205,7 @@ select:focus {
 }
 
 .trail-img {
+  margin-left: 0.3rem;
   width: 100%;
   height: 14.3rem;
   object-fit: cover;
