@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/header';
+// import AllList from './pages/all-list';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -56,7 +57,7 @@ export default class App extends React.Component {
       method: 'POST',
       body: formData,
       headers: {
-        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NDUwNTQxMjN9.U7xEy90BDboZkB6FyU4I_1rbO6bLDilv2wKXT80Eo1Y'
+        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE2NDUxMjYwNjZ9.u0hS-DuxFQZ6OYwzHBG9fvZOQf1onPqogcIsXhLljiM'
       }
     })
       .then(res => res.json())
@@ -72,6 +73,7 @@ export default class App extends React.Component {
         this.fileInputRef.current.value = null;
       })
       .catch(err => console.error(err));
+
   }
 
   render() {
