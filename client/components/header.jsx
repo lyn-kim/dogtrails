@@ -6,7 +6,7 @@ export default function Header(props) {
         <div className="row space-between">
           <div>
             <span className="display-flex"><i className="fas fa-mountain logo"></i>
-              <a className="logo-font"> DogTrails</a>
+            <a href="#" className="logo-font"> DogTrails</a>
             </span>
           </div>
           <ul className="nav-list">
