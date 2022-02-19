@@ -10,9 +10,9 @@ export default function Header(props) {
             </span>
           </div>
           <ul className="nav-list">
-            <li className="nav-links"><a>SAVED</a></li>
-            <li className="nav-links"><a>LIST</a></li>
-            <li className="nav-links"><a><i className="fas fa-user"></i></a></li>
+            <li className="nav-links"><a href="#saved">SAVED</a></li>
+            <li className="nav-links"><a href="#all-list">LIST</a></li>
+            <li className="nav-links"><a href="#sign-in" ><i className="fas fa-user"></i></a></li>
           </ul>
         </div>
       </div>

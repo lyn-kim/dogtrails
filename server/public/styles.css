@@ -53,10 +53,6 @@
   cursor: pointer;
 }
 
-/* .navbar {
-
-} */
-
 ul.nav-list {
   margin-top: 1.6rem;
   padding: 0;
@@ -71,6 +67,7 @@ ul.nav-list {
   text-decoration: none;
   margin-left: 1rem;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .nav-links > a:hover {

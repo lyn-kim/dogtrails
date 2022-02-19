@@ -8,61 +8,82 @@ export default class AllList extends React.Component {
     };
   }
 
-  //   componentDidMount() {
-  //     fetch('/api/trails')
-  //       .then(res => res.json())
-  //       .then(trails => this.setState({ trails }));
-  //   }
+  componentDidMount() {
+    fetch('/api/trails', {
+      method: 'GET',
+      headers: {
+        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE2NDUyMjk0NjB9.TlbmsP7FLSu-q9qklAEBn8ZIRUT3MG7fBVD2CGm9EM4'
+      }
+    })
+      .then(res => res.json())
+      .then(trails => this.setState({ trails }));
+  }
 
-  //   render() {
-  //     return (
-  //       <div className="row justify-center">
-  //         <h3 className="add-trail-title">Trail List</h3>
-  //       </div>
+  render() {
+    return (
+      <>
+        <div className="row justify-center" >
+          <h3 className="add-trail-title">Trail List</h3>
+        </div >
 
-  //       <div className="row">
-  //         {
-  //           this.state.trails.map(trail => (
-  //             <div key={trail.trailId} className="row trail-entry">
-  //               <Trail trail={trail} />
-  //             </div>
-  //           ))
-  //         }
-  //       </div>
-  //     );
-  //   }
+        <div>
+          {
+            this.state.trails.map(trail => (
+              <div key={trail.trailId} className="row trail-entry">
+                <Trail trail={trail} />
+              </div>
+            ))
+          }
+        </div>
+      </>
+    );
+  }
+}
 
-  // }
+function Trail(props) {
+  const { trailName, isDeleted, length, location, photoUrl, difficulty } = props.trail;
 
-  // function Trail(props) {
-  //   const { trailName, length, difficulty, location, photoUrl } = props.trails;
+  if (isDeleted === false) {
+    return (
+      <>
+        <div className="column-three-fifth position-relative">
+          <div className="row">
+            <div className="column-three-fourth trail-name">
+              <p className="trail-name">{trailName}</p>
+            </div>
+            <div className="column-fourth trail-name text-align-end">
+              {/* <i className="fas fa-bookmark"></i>
+              <i className="far fa-bookmark"></i>
+              <i className="fas fa-trash icon-margin"></i> */}
+            </div>
+          </div>
+          <div className="row">
+            <span className="trail-length-num">{length}</span><span className="trail-length-mi">miles</span>
+          </div>
+          <div className="row">
+            {
+              difficulty === 'easy'
+                ? (
+                <p className="intensity-rating-easy">EASY</p>
+                  )
+                : difficulty === 'moderate'
+                  ? (
+                <p className="intensity-rating-moderate">MODERATE</p>
+                    )
+                  : (
+                <p className="intensity-rating-difficult">DIFFICULT</p>
+                    )
+            }
+          </div>
+          <div className="row">
+            <p className="position-absolute trail-address">{location}</p>
+          </div>
+        </div>
 
-  //   return (
-  //     <>
-  //       <div className="column-three-fifth position-relative">
-  //         <div className="row">
-  //           <div className="column-three-fourth trail-name">
-  //             <p className="trail-name">{ trailName }</p>
-  //           </div>
-  //           <div className="column-fourth trail-name text-align-end">
-  //             {/* <i class="fas fa-bookmark"></i> */}
-  //             {/* <i class="far fa-bookmark"></i> */}
-  //             {/* <i class="fas fa-trash icon-margin"></i> */}
-  //           </div>
-  //         </div>
-  //         <div className="row align-content-center">
-  //           <div className="row display-block text-align-center">
-  //             <span className="trail-length-num">{ length }</span><span className="trail-length-mi">miles</span>
-  //             <p className="intensity-rating-moderate">{ difficulty }</p>
-  //           </div>
-  //         </div>
-  //         <div className="row">
-  //           <p className="position-absolute trail-address">{ location }</p>
-  //         </div>
-  //       </div>
-
-//       <div className="column-two-fifth">
-//         <img className="trail-img" src={photoUrl} alt="image of trail"/>
-//       </div>
-//   );
+        <div className="column-two-fifth">
+          <img className="trail-img" src={photoUrl} alt="image of trail"/>
+        </div>
+      </>
+    );
+  }
 }
