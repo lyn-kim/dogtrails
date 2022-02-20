@@ -67,6 +67,7 @@ ul.nav-list {
   text-decoration: none;
   margin-left: 1rem;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .nav-links > a:hover {
@@ -233,4 +234,31 @@ select:focus {
 
 .intensity-rating-difficult {
   background-color: #d21c1c;
+}
+
+/* landing page */
+.landing-bg {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  z-index: -1;
+  position: fixed;
+}
+
+/* not found page */
+.no-trail-msg {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.add-button {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.click-to-add {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #436f22;
 }
