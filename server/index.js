@@ -78,12 +78,31 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/all-trails', (req, res, next) => {
+  const sql = `
+    select "trailId",
+           "trailName",
+           "length",
+           "difficulty",
+           "location",
+           "photoUrl",
+           "isDeleted"
+      from "trails"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(authorizationMiddleware);
 
-app.get('/api/trails', (req, res, next) => {
+app.get('/api/my-trails', (req, res, next) => {
   const { userId } = req.user;
   const sql = `
-    select "trailName",
+    select "trailId",
+           "trailName",
            "length",
            "difficulty",
            "location",

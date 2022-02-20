@@ -9,10 +9,16 @@ export default class AllList extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/all-trails')
+    fetch('/api/my-trails', {
+      method: 'GET',
+      headers: {
+        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE2NDUyMjk0NjB9.TlbmsP7FLSu-q9qklAEBn8ZIRUT3MG7fBVD2CGm9EM4'
+      }
+    })
       .then(res => res.json())
       .then(trails => {
         this.setState({ trails });
+
       }
       );
   }
