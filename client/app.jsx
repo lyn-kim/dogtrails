@@ -5,6 +5,7 @@ import SubmitPage from './pages/submit';
 import Home from './pages/home';
 import AllList from './pages/all-list';
 import NotFound from './pages/not-found';
+import SearchBar from './components/search-bar';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export default class App extends React.Component {
           <Home />
           <div className="container">
             <Header/>
+            <SearchBar/>
           </div>
         </>
       );
