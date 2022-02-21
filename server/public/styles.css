@@ -334,3 +334,19 @@ input.keyword-box:focus {
 .go-button-icon {
   color: #436f22;
 }
+
+.dot-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  position: fixed;
+  bottom: 2rem;
+}
+
+.dot {
+  font-size: 0.8rem;
+  -webkit-text-stroke-width: 1px;
+  margin: 0 0.2rem;
+  cursor: pointer;
+}
