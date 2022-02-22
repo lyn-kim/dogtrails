@@ -7,6 +7,20 @@ import AllList from './pages/all-list';
 import NotFound from './pages/not-found';
 import SearchBar from './components/search-bar';
 
+const imgArray = [
+  {
+    id: 0,
+    url: 'images/DSC02505.jpg'
+  },
+  {
+    id: 1,
+    url: 'images/DSC02236.jpg'
+  },
+  {
+    id: 2,
+    url: 'images/DSC01406.jpg'
+  }
+];
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +54,7 @@ export default class App extends React.Component {
     if (route.path === '') {
       return (
         <>
-          <Home />
+          <Home imgArray={imgArray}/>
           <div className="container">
             <Header/>
             <SearchBar/>

@@ -345,8 +345,9 @@ input.keyword-box:focus {
 }
 
 .dot {
+  color: white;
   font-size: 0.8rem;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: 0.5px;
   margin: 0 0.2rem;
   cursor: pointer;
 }
