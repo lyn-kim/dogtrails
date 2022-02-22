@@ -6,6 +6,7 @@ import Home from './pages/home';
 import AllList from './pages/all-list';
 import NotFound from './pages/not-found';
 import SearchBar from './components/search-bar';
+import SearchList from './pages/search-list';
 
 const imgArray = [
   {
@@ -45,6 +46,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'submit') {
       return <SubmitPage />;
+    }
+    if (route.path === 'search-list') {
+      return <SearchList />;
     }
     return <NotFound />;
   }

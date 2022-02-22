@@ -96,6 +96,27 @@ app.get('/api/all-trails', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/searched-trails', (req, res, next) => {
+  const { trailName } = req.body;
+  const sql = `
+    select "trailId",
+           "trailName",
+           "length",
+           "difficulty",
+           "location",
+           "photoUrl",
+           "isDeleted"
+      from "trails"
+     where "trailName" ilike $1
+  `;
+  const params = [`%${trailName}%`];
+  db.query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(authorizationMiddleware);
 
 app.get('/api/my-trails', (req, res, next) => {

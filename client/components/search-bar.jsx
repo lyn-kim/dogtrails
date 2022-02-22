@@ -15,7 +15,7 @@ export default function SearchBar(props) {
                 <label htmlFor="keyword" className="keyword-container">
                   <input className="keyword-box" required id="keyword" type="text" placeholder="Search by trail name or keyword" name="keyword" />
                 </label>
-                <span><button type="submit" className="go-button"><i className="go-button-icon fas fa-arrow-alt-circle-right"></i></button></span>
+                <span><button href="#searched-list" type="submit" className="go-button"><i className="go-button-icon fas fa-arrow-alt-circle-right"></i></button></span>
               </form>
             </div>
           </div>
