@@ -8,14 +8,14 @@ export default class SearchList extends React.Component {
     };
   }
 
-  componentDidMount() {
-    fetch('/api/searched-trails')
-      .then(res => res.json())
-      .then(trails => {
-        this.setState({ trails });
-      }
-      );
-  }
+  // componentDidMount() {
+  //   fetch('/api/searched-trails')
+  //     .then(res => res.json())
+  //     .then(trails => {
+  //       this.setState({ trails });
+  //     }
+  //     );
+  // }
 
   render() {
     return (
