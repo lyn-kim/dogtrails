@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteButton from '../components/delete-icon';
 
 export default class AllList extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class AllList extends React.Component {
 
         <div>
           {
-            this.state.trails.map(trail => {
+            this.state.trails.filter(trail => !trail.isDeleted).map(trail => {
               return (
                 <div key={trail.trailId} className="row trail-entry">
                   <Trail trail={trail} />
@@ -41,10 +42,9 @@ export default class AllList extends React.Component {
 }
 
 function Trail(props) {
-  const { trailName, isDeleted, length, location, photoUrl, difficulty } = props.trail;
+  const { trailName, length, location, photoUrl, difficulty } = props.trail;
 
-  if (isDeleted === false) {
-    return (
+  return (
       <>
         <div className="column-three-fifth position-relative">
           <div className="row">
@@ -52,6 +52,7 @@ function Trail(props) {
               <p className="trail-name">{trailName}</p>
             </div>
             <div className="column-fourth trail-name text-align-end">
+              <DeleteButton/>
               {/* <i className="fas fa-bookmark"></i>
               <i className="far fa-bookmark"></i>
               <i className="fas fa-trash icon-margin"></i> */}
@@ -84,6 +85,6 @@ function Trail(props) {
           <img className="trail-img" src={photoUrl} alt="image of trail"/>
         </div>
       </>
-    );
-  }
+  );
+
 }

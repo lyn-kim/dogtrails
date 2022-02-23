@@ -81,6 +81,7 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 app.get('/api/all-trails', (req, res, next) => {
   const sql = `
     select "trailId",
+           "userId",
            "trailName",
            "length",
            "difficulty",
@@ -160,6 +161,26 @@ app.post('/api/trails', uploadsMiddleware, (req, res, next) => {
       res.status(201).json(trail);
     })
     .catch(err => next(err));
+});
+
+app.delete('/api/trails/:trailId', (req, res) => {
+  const trailId = Number(req.params.trailId);
+
+  const sql = `
+    update "trails"
+       set "isDeleted" = true
+     where "trailId" = ${trailId};
+  `;
+
+  db.query(sql)
+    .then(result => {
+      const trail = result.rows;
+      res.status(204).json(trail);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json('An unexpected error has occured');
+    });
 });
 
 app.use(errorMiddleware);
