@@ -48,6 +48,7 @@ export default class App extends React.Component {
   handleSearch(event) {
     event.preventDefault();
     window.location.hash = `search-list?trailName=${this.state.keyword}`;
+    this.setState({ keyword: '' });
   }
 
   renderPage() {

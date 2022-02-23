@@ -1,4 +1,5 @@
 import React from 'react';
+import NotFound from './not-found';
 
 export default class SearchList extends React.Component {
   constructor(props) {
@@ -21,6 +22,9 @@ export default class SearchList extends React.Component {
   }
 
   render() {
+    if (this.state.trails.length === 0) {
+      return <NotFound/>;
+    }
     return (
         <>
         <div className="row justify-center" >
@@ -38,6 +42,13 @@ export default class SearchList extends React.Component {
             })
           }
         </div>
+        <div className="add-button">
+          <label htmlFor='img-upload' className="image-upload-button">
+            <a href="#submit"><i className="fas fa-plus-circle plus-button"></i></a>
+            <a href="#submit"><p className="click-to-add">CLICK TO ADD</p></a>
+          </label>
+          <input id="img-upload" type="file" />
+        </div>
       </>
     );
   }
@@ -45,7 +56,6 @@ export default class SearchList extends React.Component {
 
 function Trail(props) {
   const { trailName, isDeleted, length, location, photoUrl, difficulty } = props.trail;
-
   if (isDeleted === false) {
     return (
       <>
