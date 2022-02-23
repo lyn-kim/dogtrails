@@ -5,8 +5,7 @@ export default class SearchList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trails: [],
-      isSubmitted: false
+      trails: []
     };
   }
 
@@ -15,7 +14,6 @@ export default class SearchList extends React.Component {
       .then(res => res.json())
       .then(trails => {
         this.setState({
-          isSubmitted: true,
           trails: trails
         });
       });
@@ -47,7 +45,6 @@ export default class SearchList extends React.Component {
             <a href="#submit"><i className="fas fa-plus-circle plus-button"></i></a>
             <a href="#submit"><p className="click-to-add">CLICK TO ADD</p></a>
           </label>
-          <input id="img-upload" type="file" />
         </div>
       </>
     );
@@ -65,9 +62,6 @@ function Trail(props) {
               <p className="trail-name">{trailName}</p>
             </div>
             <div className="column-fourth trail-name text-align-end">
-              {/* <i className="fas fa-bookmark"></i>
-              <i className="far fa-bookmark"></i>
-              <i className="fas fa-trash icon-margin"></i> */}
             </div>
           </div>
           <div className="row">
