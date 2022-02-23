@@ -45,6 +45,10 @@ export default class Home extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   render() {
 
     const imgArray = this.props.imgArray;

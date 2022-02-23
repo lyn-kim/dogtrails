@@ -4,24 +4,30 @@ export default class SearchList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trails: []
+      trails: [],
+      keyword: this.props.keyword,
+      isSubmitted: false
     };
   }
 
-  // componentDidMount() {
-  //   fetch('/api/searched-trails')
-  //     .then(res => res.json())
-  //     .then(trails => {
-  //       this.setState({ trails });
-  //     }
-  //     );
-  // }
+  componentDidMount() {
+    fetch('/api/searched-trails?trailName=' + encodeURIComponent(this.state.keyword))
+      .then(res => res.json())
+      .then(trails => {
+        this.setState({
+          isSubmitted: true,
+          trails: trails
+        });
+        // console.log(trails);
+        // console.log(this.state);
+      });
+  }
 
   render() {
     return (
         <>
         <div className="row justify-center" >
-          <h3 className="add-trail-title">Trail List</h3>
+          <h3 className="add-trail-title">Search Result</h3>
         </div >
 
         <div>

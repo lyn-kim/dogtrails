@@ -5,7 +5,7 @@ import SubmitPage from './pages/submit';
 import Home from './pages/home';
 import AllList from './pages/all-list';
 import NotFound from './pages/not-found';
-import SearchBar from './components/search-bar';
+// import SearchBar from './components/search-bar';
 import SearchList from './pages/search-list';
 
 const imgArray = [
@@ -26,8 +26,11 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      keyword: '',
       route: parseRoute(window.location.hash)
     };
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +40,26 @@ export default class App extends React.Component {
           route: parseRoute(window.location.hash)
         });
       });
+  }
+
+  handleChange(event) {
+    this.setState({ keyword: event.target.value });
+  }
+
+  handleSearch(event) {
+    event.preventDefault();
+    window.location.hash = `search-list?trailName=${this.state.keyword}`;
+
+    // fetch('/api/searched-trails?trailName=' + encodeURIComponent(this.state.keyword))
+    //   .then(res => res.json())
+    //   .then(trails => {
+    //     this.setState({
+    //       keyword: '',
+    //       isSubmitted: true,
+    //       trails: trails
+    //     });
+    //     // console.log(trails);
+    //   });
   }
 
   renderPage() {
@@ -54,6 +77,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    // console.log(this.state);
     const { route } = this.state;
     if (route.path === '') {
       return (
@@ -61,7 +85,27 @@ export default class App extends React.Component {
           <Home imgArray={imgArray}/>
           <div className="container">
             <Header/>
-            <SearchBar/>
+            {/* <SearchBar/> */}
+            <div className="row">
+              <div className="search-container column-full">
+                <div className="row">
+                  <p className="quote">Find your adventure:</p>
+                </div>
+                <div className="row">
+                  <div className="search-bar">
+                    <div className="input-container">
+                      <form onSubmit={this.handleSearch} className="form-container">
+                        <span><i className="magnify-icon fas fa-search"></i></span>
+                        <label htmlFor="keyword" className="keyword-container">
+                          <input value={this.state.keyword} onChange={this.handleChange} className="keyword-box" required id="keyword" type="text" placeholder="Search by trail name or keyword" name="keyword" />
+                        </label>
+                        <span><button href="#search-list" type="submit" className="go-button"><i className="go-button-icon fas fa-arrow-alt-circle-right"></i></button></span>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </>
       );
