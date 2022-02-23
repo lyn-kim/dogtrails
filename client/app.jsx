@@ -5,7 +5,6 @@ import SubmitPage from './pages/submit';
 import Home from './pages/home';
 import AllList from './pages/all-list';
 import NotFound from './pages/not-found';
-// import SearchBar from './components/search-bar';
 import SearchList from './pages/search-list';
 
 const imgArray = [
@@ -49,17 +48,6 @@ export default class App extends React.Component {
   handleSearch(event) {
     event.preventDefault();
     window.location.hash = `search-list?trailName=${this.state.keyword}`;
-
-    // fetch('/api/searched-trails?trailName=' + encodeURIComponent(this.state.keyword))
-    //   .then(res => res.json())
-    //   .then(trails => {
-    //     this.setState({
-    //       keyword: '',
-    //       isSubmitted: true,
-    //       trails: trails
-    //     });
-    //     // console.log(trails);
-    //   });
   }
 
   renderPage() {
@@ -71,13 +59,13 @@ export default class App extends React.Component {
       return <SubmitPage />;
     }
     if (route.path === 'search-list') {
-      return <SearchList />;
+      const searchKeyword = route.params.get('trailName');
+      return <SearchList searchKeyword={searchKeyword} />;
     }
     return <NotFound />;
   }
 
   render() {
-    // console.log(this.state);
     const { route } = this.state;
     if (route.path === '') {
       return (
@@ -85,7 +73,6 @@ export default class App extends React.Component {
           <Home imgArray={imgArray}/>
           <div className="container">
             <Header/>
-            {/* <SearchBar/> */}
             <div className="row">
               <div className="search-container column-full">
                 <div className="row">

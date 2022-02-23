@@ -5,21 +5,18 @@ export default class SearchList extends React.Component {
     super(props);
     this.state = {
       trails: [],
-      keyword: this.props.keyword,
       isSubmitted: false
     };
   }
 
   componentDidMount() {
-    fetch('/api/searched-trails?trailName=' + encodeURIComponent(this.state.keyword))
+    fetch('/api/searched-trails?trailName=' + encodeURIComponent(`${this.props.searchKeyword}`))
       .then(res => res.json())
       .then(trails => {
         this.setState({
           isSubmitted: true,
           trails: trails
         });
-        // console.log(trails);
-        // console.log(this.state);
       });
   }
 
