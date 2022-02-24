@@ -163,6 +163,25 @@ app.post('/api/trails', uploadsMiddleware, (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/trails/:trailId', (req, res) => {
+  const trailId = Number(req.params.trailId);
+
+  const sql = `
+    update "trails"
+       set "isDeleted" = false
+     where "trailId" = ${trailId};
+  `;
+
+  db.query(sql)
+    .then(result => {
+      res.status(204).send();
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json('An unexpected error has occured');
+    });
+});
+
 app.delete('/api/trails/:trailId', (req, res) => {
   const trailId = Number(req.params.trailId);
 
@@ -174,8 +193,7 @@ app.delete('/api/trails/:trailId', (req, res) => {
 
   db.query(sql)
     .then(result => {
-      const trail = result.rows;
-      res.status(204).json(trail);
+      res.status(204).send();
     })
     .catch(err => {
       console.error(err);
