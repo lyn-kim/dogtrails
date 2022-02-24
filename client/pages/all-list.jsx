@@ -24,7 +24,6 @@ export default class AllList extends React.Component {
         <div className="row justify-center" >
           <h3 className="add-trail-title">Trail List</h3>
         </div >
-
         <div>
           {
             this.state.trails.filter(trail => !trail.isDeleted).map(trail => {
@@ -53,9 +52,6 @@ function Trail(props) {
             </div>
             <div className="column-fourth trail-name text-align-end">
               <DeleteButton/>
-              {/* <i className="fas fa-bookmark"></i>
-              <i className="far fa-bookmark"></i>
-              <i className="fas fa-trash icon-margin"></i> */}
             </div>
           </div>
           <div className="row">

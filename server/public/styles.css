@@ -39,6 +39,83 @@
   text-align: end;
 }
 
+/* delete modal */
+.position-fixed {
+  position: fixed;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
+.modal-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-bg {
+  width: 100%;
+  height: 100vh;
+  background: rgba(56, 56, 56, 0.8);
+  z-index: 1;
+}
+
+.modal-box {
+  margin: auto;
+  width: 18rem;
+  height: 15rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.4rem;
+}
+
+.delete-msg-main {
+  color: rgba(39, 39, 39, 0.8);
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.delete-msg-minor {
+  text-align: center;
+  color: rgb(173, 173, 173);
+  line-height: 1.1rem;
+}
+
+.cancel-btn,
+.delete-btn {
+  font-size: 0.8rem;
+  font-weight: 400;
+  width: 6.2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 1.2rem;
+}
+
+.delete-btn {
+  background-color: #d44949;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #808080;
+  color: white;
+}
+
+.exit-icon {
+  color: rgb(112, 112, 112);
+  position: absolute;
+  right: 0.8rem;
+  top: 0.6rem;
+  cursor: pointer;
+}
+
 /* navbar */
 .logo {
   font-size: 1.5rem;
@@ -234,6 +311,10 @@ select:focus {
 
 .intensity-rating-difficult {
   background-color: #d21c1c;
+}
+
+.trash-icon {
+  cursor: pointer;
 }
 
 /* landing page */

@@ -55,7 +55,7 @@ export default class SubmitPage extends React.Component {
       method: 'POST',
       body: formData,
       headers: {
-        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2NDUzMzc4NTl9.GugLtXmPwZ2trFLfqcB_B53575ZAsJHHcYp2ZsaRv-4'
+        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoidGVzdCIsImlhdCI6MTY0NTY3MTkyNX0.0Vxwc_F_T5PCP8um4mG8frQenmN4tDo4cF-W-zd81Pg'
       }
     })
       .then(res => res.json())
@@ -109,7 +109,7 @@ export default class SubmitPage extends React.Component {
                 onChange={this.handleNameChange} />
             </label>
             <label htmlFor="trail-length">
-              <p className="input-title">Length:</p>
+              <p className="input-title">Length(miles):</p>
               <input
                 required
                 id="lengthTitle"
