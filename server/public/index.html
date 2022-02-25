@@ -17,6 +17,46 @@
 <body>
   <div id="root">
 
+    <div class="position-relative">
+      <div id="modal-view" class="row">
+        <div class="modal-bg position-fixed">
+          <form>
+            <div class="auth-box modal-center">
+              <div class="row justify-center">
+                <a><i class="exit-icon fas fa-times"></i></a>
+                <p class="get-started-msg">Get Started</p>
+              </div>
+              <div class="row">
+                <label for="username" class="auth-input-label">Username:</label>
+                <input
+                required
+                autofocus
+                id="username"
+                type="text"
+                name="username"
+                class="auth-input"
+                />
+              </div>
+              <div class="row">
+                <label for="password" class="auth-input-label">Password:</label>
+                <input
+              required
+              autofocus
+              id="password"
+              type="text"
+              name="password"
+              class="auth-input" />
+              </div>
+              <div class="row">
+                <button type="submit" class="auth-submit-btn">Register</button>
+              </div>
+              <a><p class="auth-check-msg">Already have an account?</p></a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script src="/main.js"></script>
