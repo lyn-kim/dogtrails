@@ -78,6 +78,19 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/all-users', (req, res, next) => {
+  const sql = `
+    select "userId",
+           "username"
+      from "users"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/all-trails', (req, res, next) => {
   const sql = `
     select "trailId",

@@ -4,7 +4,17 @@ export default class AllList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      users: []
     };
+  }
+
+  componentDidMount() {
+    fetch('/api/all-users')
+      .then(res => res.json())
+      .then(users => {
+        this.setState({ users });
+      }
+      );
   }
 
   render() {
