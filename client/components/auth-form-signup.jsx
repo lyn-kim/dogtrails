@@ -1,6 +1,5 @@
 import React from 'react';
 import AuthFormLogin from './auth-form-login';
-
 export default class AuthFormSignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +9,7 @@ export default class AuthFormSignUp extends React.Component {
       login: false
     };
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOpenLoginModal = this.handleOpenLoginModal.bind(this);
   }
 
@@ -19,26 +18,25 @@ export default class AuthFormSignUp extends React.Component {
     this.setState({ [name]: value });
   }
 
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   const { action } = this.props;
-  //   const req = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(this.state)
-  //   };
-  //   fetch(`/api/auth/${action}`, req)
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       if (action === 'sign-up') {
-  //         window.location.hash = 'sign-in';
-  //       } else if (result.user && result.token) {
-  //         this.props.onSignIn(result);
-  //       }
-  //     });
-  // }
+  handleSubmit(event) {
+    event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('api/auth/sign-up', req)
+      .then(res => res.json())
+      .then(() => {
+        this.setState({
+          username: '',
+          password: ''
+        });
+      });
+    this.handleOpenLoginModal();
+  }
 
   handleOpenLoginModal() {
     this.setState({ login: true });
@@ -52,7 +50,7 @@ export default class AuthFormSignUp extends React.Component {
       <div className="position-relative">
         <div id="modal-view" className="row">
           <div className="modal-bg position-fixed">
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="auth-box modal-center">
                 <div className="row justify-center">
                   <a onClick={() => this.props.onCloseAuthModal()} ><i className="exit-icon fas fa-times"></i></a>
@@ -67,6 +65,7 @@ export default class AuthFormSignUp extends React.Component {
                     type="text"
                     name="username"
                     className="auth-input"
+                    value={this.state.username}
                     onChange={this.handleChange}
                   />
                 </div>
@@ -78,6 +77,7 @@ export default class AuthFormSignUp extends React.Component {
                     id="password"
                     type="password"
                     name="password"
+                    value={this.state.password}
                     className="auth-input"
                     onChange={this.handleChange} />
                 </div>

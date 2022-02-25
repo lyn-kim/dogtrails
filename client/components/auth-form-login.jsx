@@ -21,7 +21,6 @@ export default class AuthFormLogin extends React.Component {
 
   // handleSubmit(event) {
   //   event.preventDefault();
-  //   const { action } = this.props;
   //   const req = {
   //     method: 'POST',
   //     headers: {
@@ -29,12 +28,10 @@ export default class AuthFormLogin extends React.Component {
   //     },
   //     body: JSON.stringify(this.state)
   //   };
-  //   fetch(`/api/auth/${action}`, req)
+  //   fetch('/api/auth/sign-in', req)
   //     .then(res => res.json())
   //     .then(result => {
-  //       if (action === 'sign-up') {
-  //         window.location.hash = 'sign-in';
-  //       } else if (result.user && result.token) {
+  //       (result.user && result.token) {
   //         this.props.onSignIn(result);
   //       }
   //     });
