@@ -6,6 +6,7 @@ import Home from './pages/home';
 import AllList from './pages/all-list';
 import NotFound from './pages/not-found';
 import SearchList from './pages/search-list';
+import AuthFormSignUp from './components/auth-form-signup';
 
 const imgArray = [
   {
@@ -28,6 +29,7 @@ export default class App extends React.Component {
       trails: [],
       trailToDelete: null,
       keyword: '',
+      authInProgress: false,
       route: parseRoute(window.location.hash)
     };
     this.handleSearch = this.handleSearch.bind(this);
@@ -35,6 +37,8 @@ export default class App extends React.Component {
     this.handleOpenDeleteModal = this.handleOpenDeleteModal.bind(this);
     this.handleCloseDeleteModal = this.handleCloseDeleteModal.bind(this);
     this.deleteTrail = this.deleteTrail.bind(this);
+    this.handleCloseSignUpModal = this.handleCloseSignUpModal.bind(this);
+    this.handleOpenSignUpModal = this.handleOpenSignUpModal.bind(this);
   }
 
   componentDidMount() {
@@ -58,9 +62,7 @@ export default class App extends React.Component {
   }
 
   handleOpenDeleteModal(trailId) {
-    this.setState({
-      trailToDelete: trailId
-    });
+    this.setState({ trailToDelete: trailId });
   }
 
   handleCloseDeleteModal() {
@@ -94,7 +96,19 @@ export default class App extends React.Component {
     this.fetchTrails();
   }
 
-  renderModal() {
+  handleOpenSignUpModal() {
+    this.setState({ authInProgress: true });
+  }
+
+  handleCloseSignUpModal() {
+    this.setState({ authInProgress: false });
+  }
+
+  renderAuthForm() {
+    return <AuthFormSignUp onCloseAuthModal={this.handleCloseSignUpModal} />;
+  }
+
+  renderDeleteModal() {
     return (
       <div className="position-relative">
         <div id="modal-view" className="row">
@@ -136,9 +150,10 @@ export default class App extends React.Component {
     if (route.path === '') {
       return (
         <>
+          {this.state.authInProgress ? this.renderAuthForm() : null}
           <Home imgArray={imgArray}/>
           <div className="container">
-            <Header/>
+            <Header onOpenAuthModal={this.handleOpenSignUpModal} />
             <div className="row">
               <div className="search-container column-full">
                 <div className="row">
@@ -165,7 +180,7 @@ export default class App extends React.Component {
     }
     return (
       <>
-      {this.state.trailToDelete ? this.renderModal() : null}
+      {this.state.trailToDelete ? this.renderDeleteModal() : null}
         <div className="container">
           <Header/>
           { this.renderPage() }
