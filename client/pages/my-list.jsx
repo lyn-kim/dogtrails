@@ -58,9 +58,6 @@ function Trail(props) {
               <p className="trail-name">{trailName}</p>
             </div>
             <div className="column-fourth trail-name text-align-end">
-              {/* <i className="fas fa-bookmark"></i>
-              <i className="far fa-bookmark"></i>
-              <i className="fas fa-trash icon-margin"></i> */}
             </div>
           </div>
           <div className="row">

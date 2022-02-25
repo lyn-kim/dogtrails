@@ -10,7 +10,6 @@ export default class AuthFormLogin extends React.Component {
       signup: false
     };
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOpenSignupModal = this.handleOpenSignupModal.bind(this);
   }
 
@@ -18,24 +17,6 @@ export default class AuthFormLogin extends React.Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
-
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   const req = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(this.state)
-  //   };
-  //   fetch('/api/auth/sign-in', req)
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       (result.user && result.token) {
-  //         this.props.onSignIn(result);
-  //       }
-  //     });
-  // }
 
   handleOpenSignupModal() {
     this.setState({ signup: true });
