@@ -4,15 +4,15 @@ export default class AllList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trails: []
+      users: []
     };
   }
 
   componentDidMount() {
-    fetch('/api/all-trails')
+    fetch('/api/all-users')
       .then(res => res.json())
-      .then(trails => {
-        this.setState({ trails });
+      .then(users => {
+        this.setState({ users });
       }
       );
   }
@@ -23,13 +23,12 @@ export default class AllList extends React.Component {
         <div className="row justify-center" >
           <h3 className="add-trail-title">Trail List</h3>
         </div >
-
         <div>
           {
-            this.state.trails.map(trail => {
+            this.props.trails.filter(trail => !trail.isDeleted).map(trail => {
               return (
                 <div key={trail.trailId} className="row trail-entry">
-                  <Trail trail={trail} />
+                  <Trail trail={trail} onOpenDeleteModal={this.props.onOpenDeleteModal}/>
                 </div>
               );
             })
@@ -41,10 +40,9 @@ export default class AllList extends React.Component {
 }
 
 function Trail(props) {
-  const { trailName, isDeleted, length, location, photoUrl, difficulty } = props.trail;
+  const { trailId, trailName, length, location, photoUrl, difficulty } = props.trail;
 
-  if (isDeleted === false) {
-    return (
+  return (
       <>
         <div className="column-three-fifth position-relative">
           <div className="row">
@@ -52,9 +50,9 @@ function Trail(props) {
               <p className="trail-name">{trailName}</p>
             </div>
             <div className="column-fourth trail-name text-align-end">
-              {/* <i className="fas fa-bookmark"></i>
-              <i className="far fa-bookmark"></i>
-              <i className="fas fa-trash icon-margin"></i> */}
+              {
+                <a onClick={() => props.onOpenDeleteModal(trailId)}><i className="trash-icon fas fa-trash icon-margin"></i></a>
+              }
             </div>
           </div>
           <div className="row">
@@ -84,6 +82,6 @@ function Trail(props) {
           <img className="trail-img" src={photoUrl} alt="image of trail"/>
         </div>
       </>
-    );
-  }
+  );
+
 }

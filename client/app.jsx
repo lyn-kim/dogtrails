@@ -25,11 +25,16 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      trails: [],
+      trailToDelete: null,
       keyword: '',
       route: parseRoute(window.location.hash)
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleOpenDeleteModal = this.handleOpenDeleteModal.bind(this);
+    this.handleCloseDeleteModal = this.handleCloseDeleteModal.bind(this);
+    this.deleteTrail = this.deleteTrail.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +44,27 @@ export default class App extends React.Component {
           route: parseRoute(window.location.hash)
         });
       });
+
+    this.fetchTrails();
+  }
+
+  fetchTrails() {
+    fetch('/api/all-trails')
+      .then(res => res.json())
+      .then(trails => {
+        this.setState({ trails });
+      }
+      );
+  }
+
+  handleOpenDeleteModal(trailId) {
+    this.setState({
+      trailToDelete: trailId
+    });
+  }
+
+  handleCloseDeleteModal() {
+    this.setState({ trailToDelete: null });
   }
 
   handleChange(event) {
@@ -51,10 +77,49 @@ export default class App extends React.Component {
     this.setState({ keyword: '' });
   }
 
+  deleteTrail() {
+    fetch(`/api/trails/${this.state.trailToDelete}`, {
+      method: 'DELETE',
+      headers: {
+        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoidGVzdCIsImlhdCI6MTY0NTczMTU5NH0.lrqMRPT2lLljd7s8mvtG9PlCpef2J72-8JTfw4mciWM'
+      }
+    })
+      .then(() => {
+        this.setState({
+          trailToDelete: null
+        });
+      })
+      .catch(err => console.error(err));
+
+    this.fetchTrails();
+  }
+
+  renderModal() {
+    return (
+      <div className="position-relative">
+        <div id="modal-view" className="row">
+          <div className="modal-bg position-fixed">
+            <div className="modal-box modal-center">
+              <div className="row justify-center">
+                <a onClick={this.handleCloseDeleteModal}><i className="exit-icon fas fa-times"></i></a>
+                <p className="delete-msg-main">Are you sure?</p>
+                <p className="delete-msg-minor">Would you like to delete this trail? This process cannot be undone.</p>
+              </div>
+              <div className="row space-evenly">
+                <button onClick={this.handleCloseDeleteModal} type="button" className="cancel-btn">CANCEL</button>
+                <button onClick={this.deleteTrail} type="button" className="delete-btn">DELETE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   renderPage() {
     const { route } = this.state;
     if (route.path === 'all-list') {
-      return <AllList />;
+      return <AllList trails={this.state.trails} onOpenDeleteModal={this.handleOpenDeleteModal} />;
     }
     if (route.path === 'submit') {
       return <SubmitPage />;
@@ -100,6 +165,7 @@ export default class App extends React.Component {
     }
     return (
       <>
+      {this.state.trailToDelete ? this.renderModal() : null}
         <div className="container">
           <Header/>
           { this.renderPage() }
