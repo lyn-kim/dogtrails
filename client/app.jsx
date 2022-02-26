@@ -7,6 +7,7 @@ import AllList from './pages/all-list';
 import NotFound from './pages/not-found';
 import SearchList from './pages/search-list';
 import AuthFormSignUp from './components/auth-form-signup';
+import decodeToken from './lib/decode-token';
 
 const imgArray = [
   {
@@ -30,6 +31,8 @@ export default class App extends React.Component {
       trailToDelete: null,
       keyword: '',
       authInProgress: false,
+      user: null,
+      isAuthorizing: true,
       route: parseRoute(window.location.hash)
     };
     this.handleSearch = this.handleSearch.bind(this);
@@ -39,6 +42,7 @@ export default class App extends React.Component {
     this.deleteTrail = this.deleteTrail.bind(this);
     this.handleCloseSignUpModal = this.handleCloseSignUpModal.bind(this);
     this.handleOpenSignUpModal = this.handleOpenSignUpModal.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +52,9 @@ export default class App extends React.Component {
           route: parseRoute(window.location.hash)
         });
       });
+    const token = window.localStorage.getItem('react-context-jwt');
+    const user = token ? decodeToken(token) : null;
+    this.setState({ user, isAuthorizing: false });
 
     this.fetchTrails();
   }
@@ -59,6 +66,12 @@ export default class App extends React.Component {
         this.setState({ trails });
       }
       );
+  }
+
+  handleSignIn(result) {
+    const { user, token } = result;
+    window.localStorage.setItem('react-context-jwt', token);
+    this.setState({ user });
   }
 
   handleOpenDeleteModal(trailId) {
@@ -105,7 +118,7 @@ export default class App extends React.Component {
   }
 
   renderAuthForm() {
-    return <AuthFormSignUp onCloseAuthModal={this.handleCloseSignUpModal} />;
+    return <AuthFormSignUp onSignIn={this.handleSignIn} onCloseAuthModal={this.handleCloseSignUpModal} />;
   }
 
   renderDeleteModal() {

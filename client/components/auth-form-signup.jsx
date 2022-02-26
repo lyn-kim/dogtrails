@@ -44,7 +44,7 @@ export default class AuthFormSignUp extends React.Component {
 
   render() {
     if (this.state.login) {
-      return <AuthFormLogin onCloseAuthModal={this.props.onCloseAuthModal} />;
+      return <AuthFormLogin onSignIn={this.props.onSignIn} onCloseAuthModal={this.props.onCloseAuthModal} />;
     }
     return (
       <div className="position-relative">
@@ -73,7 +73,6 @@ export default class AuthFormSignUp extends React.Component {
                   <label htmlFor="password" className="auth-input-label">Password:</label>
                   <input
                     required
-                    autoFocus
                     id="password"
                     type="password"
                     name="password"

@@ -1,21 +1,42 @@
 import React from 'react';
 import AuthFormSignUp from './auth-form-signup';
-
 export default class AuthFormLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
-      signup: false
+      signup: false,
+      isAuthorized: false
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOpenSignupModal = this.handleOpenSignupModal.bind(this);
   }
 
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/auth/sign-in', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.user && result.token) {
+          this.props.onSignIn(result);
+        }
+      });
+    this.setState({ isAuthorized: true });
+    this.props.onCloseAuthModal();
   }
 
   handleOpenSignupModal() {
@@ -30,7 +51,7 @@ export default class AuthFormLogin extends React.Component {
       <div className="position-relative">
         <div id="modal-view" className="row">
           <div className="modal-bg position-fixed">
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="auth-box modal-center">
                 <div className="row justify-center">
                   <a onClick={() => this.props.onCloseAuthModal()} ><i className="exit-icon fas fa-times"></i></a>
@@ -45,6 +66,7 @@ export default class AuthFormLogin extends React.Component {
                     type="text"
                     name="username"
                     className="auth-input"
+                    value={this.state.user}
                     onChange={this.handleChange}
                   />
                 </div>
@@ -52,11 +74,11 @@ export default class AuthFormLogin extends React.Component {
                   <label htmlFor="password" className="auth-input-label">Password:</label>
                   <input
                     required
-                    autoFocus
                     id="password"
                     type="password"
                     name="password"
                     className="auth-input"
+                    value={this.state.password}
                     onChange={this.handleChange} />
                 </div>
                 <div className="row">
