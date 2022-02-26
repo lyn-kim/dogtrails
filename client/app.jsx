@@ -194,8 +194,9 @@ export default class App extends React.Component {
     return (
       <>
       {this.state.trailToDelete ? this.renderDeleteModal() : null}
+      {this.state.authInProgress ? this.renderAuthForm() : null}
         <div className="container">
-          <Header/>
+          <Header onOpenAuthModal={this.handleOpenSignUpModal}/>
           { this.renderPage() }
         </div>
       </>

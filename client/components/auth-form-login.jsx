@@ -6,8 +6,7 @@ export default class AuthFormLogin extends React.Component {
     this.state = {
       username: '',
       password: '',
-      signup: false,
-      isAuthorized: false
+      signup: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,10 +32,9 @@ export default class AuthFormLogin extends React.Component {
       .then(result => {
         if (result.user && result.token) {
           this.props.onSignIn(result);
+          this.props.onCloseAuthModal();
         }
       });
-    this.setState({ isAuthorized: true });
-    this.props.onCloseAuthModal();
   }
 
   handleOpenSignupModal() {
