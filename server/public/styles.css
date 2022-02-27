@@ -76,7 +76,7 @@
   text-align: center;
   font-size: 1.7rem;
   font-weight: 400;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   margin-bottom: 1.2rem;
 }
 
@@ -138,17 +138,23 @@ ul.nav-list {
 .nav-links {
   display: inline;
   list-style: none;
+  font-size: 0.9rem;
 }
 
 .nav-links > a {
   text-decoration: none;
-  margin-left: 1rem;
+  margin-left: 0.6rem;
   cursor: pointer;
   font-weight: 700;
 }
 
 .nav-links > a:hover {
   text-decoration: underline;
+}
+
+.user-icon {
+  font-size: 1rem;
+  margin-left: 0.3rem;
 }
 
 /* submit page */
@@ -489,4 +495,14 @@ input.keyword-box:focus {
 
 .auth-check-msg:hover {
   text-decoration: underline;
+}
+
+.sign {
+  font-size: 1.3rem;
+  font-family: "Reenie Beanie", cursive;
+  position: fixed;
+  color: rgb(226, 226, 226);
+  font-weight: 300;
+  bottom: 0.5rem;
+  right: 1.5rem;
 }

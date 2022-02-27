@@ -114,6 +114,7 @@ app.get('/api/searched-trails', (req, res, next) => {
   const { trailName } = req.query;
   const sql = `
     select "trailId",
+           "userId",
            "trailName",
            "length",
            "difficulty",
@@ -137,6 +138,7 @@ app.get('/api/my-trails', (req, res, next) => {
   const { userId } = req.user;
   const sql = `
     select "trailId",
+           "userId",
            "trailName",
            "length",
            "difficulty",

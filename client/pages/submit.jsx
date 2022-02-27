@@ -55,7 +55,7 @@ export default class SubmitPage extends React.Component {
       method: 'POST',
       body: formData,
       headers: {
-        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoidGVzdCIsImlhdCI6MTY0NTY3MTkyNX0.0Vxwc_F_T5PCP8um4mG8frQenmN4tDo4cF-W-zd81Pg'
+        'X-Access-Token': window.localStorage.getItem('react-context-jwt')
       }
     })
       .then(res => res.json())
@@ -134,7 +134,8 @@ export default class SubmitPage extends React.Component {
             </label>
             <label htmlFor="trail-difficulty">
               <p className="input-title">Difficulty:</p>
-              <select className="dropdown" id="difficulty" onChange={this.handleDifficultyChange} required>
+                <select defaultValue={'default'} className="dropdown" id="difficulty" onChange={this.handleDifficultyChange} required>
+                <option value='default'>Designate a difficulty rating:</option>
                 <option value="easy">Easy</option>
                 <option value="moderate">Moderate</option>
                 <option value="difficult">Difficult</option>

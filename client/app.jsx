@@ -8,6 +8,7 @@ import NotFound from './pages/not-found';
 import SearchList from './pages/search-list';
 import AuthFormSignUp from './components/auth-form-signup';
 import decodeToken from './lib/decode-token';
+import MyList from './pages/my-list';
 
 const imgArray = [
   {
@@ -88,15 +89,15 @@ export default class App extends React.Component {
 
   handleSearch(event) {
     event.preventDefault();
-    window.location.hash = `search-list?trailName=${this.state.keyword}`;
     this.setState({ keyword: '' });
+    window.location.hash = `search-list?trailName=${this.state.keyword}`;
   }
 
   deleteTrail() {
     fetch(`/api/trails/${this.state.trailToDelete}`, {
       method: 'DELETE',
       headers: {
-        'X-Access-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoidGVzdCIsImlhdCI6MTY0NTczMTU5NH0.lrqMRPT2lLljd7s8mvtG9PlCpef2J72-8JTfw4mciWM'
+        'X-Access-Token': window.localStorage.getItem('react-context-jwt')
       }
     })
       .then(() => {
@@ -148,12 +149,15 @@ export default class App extends React.Component {
     if (route.path === 'all-list') {
       return <AllList trails={this.state.trails} onOpenDeleteModal={this.handleOpenDeleteModal} />;
     }
+    if (route.path === 'my-list') {
+      return <MyList onOpenDeleteModal={this.handleOpenDeleteModal}/>;
+    }
     if (route.path === 'submit') {
       return <SubmitPage />;
     }
     if (route.path === 'search-list') {
       const searchKeyword = route.params.get('trailName');
-      return <SearchList searchKeyword={searchKeyword} />;
+      return <SearchList searchKeyword={searchKeyword} onOpenDeleteModal={this.handleOpenDeleteModal}/>;
     }
     return <NotFound />;
   }

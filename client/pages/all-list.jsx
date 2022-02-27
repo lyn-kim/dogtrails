@@ -55,24 +55,27 @@ function Trail(props) {
               }
             </div>
           </div>
-          <div className="row">
-            <span className="trail-length-num">{length}</span><span className="trail-length-mi">miles</span>
-          </div>
-          <div className="row">
-            {
-              difficulty === 'easy'
-                ? (
-                <p className="intensity-rating-easy">EASY</p>
-                  )
-                : difficulty === 'moderate'
-                  ? (
-                <p className="intensity-rating-moderate">MODERATE</p>
-                    )
-                  : (
-                <p className="intensity-rating-difficult">DIFFICULT</p>
-                    )
-            }
-          </div>
+          <div className="row align-content-center">
+            <div className="row display-block text-align-center">
+              <span className="trail-length-num">{length}</span><span className="trail-length-mi">miles</span>
+              <div className="row">
+                {
+                  difficulty === 'easy'
+                    ? (
+                    <p className="intensity-rating-easy">EASY</p>
+                      )
+                    : difficulty === 'moderate'
+                      ? (
+                      <p className="intensity-rating-moderate">MODERATE</p>
+                        )
+                      : (
+                        <p className="intensity-rating-difficult">DIFFICULT</p>
+                        )
+                      }
+              </div>
+            </div>
+
+            </div>
           <div className="row">
             <p className="position-absolute trail-address">{location}</p>
           </div>
