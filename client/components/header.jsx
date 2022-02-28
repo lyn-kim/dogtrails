@@ -17,7 +17,7 @@ export default class Header extends React.Component {
               </span>
             </div>
             <ul className="nav-list">
-              <li className="nav-links"><a href="#saved">SAVED</a></li>
+              <li className="nav-links"><a href="#my-list">MY LIST</a></li>
               <li className="nav-links"><a href="#all-list">EXPLORE</a></li>
               <li className="nav-links">
                 {

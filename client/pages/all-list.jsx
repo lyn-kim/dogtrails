@@ -21,7 +21,7 @@ export default class AllList extends React.Component {
     return (
         <>
         <div className="row justify-center" >
-          <h3 className="add-trail-title">Trail List</h3>
+          <h3 className="add-trail-title">All Trails</h3>
         </div >
         <div>
           {
@@ -33,6 +33,12 @@ export default class AllList extends React.Component {
               );
             })
           }
+        </div>
+        <div className="add-button">
+          <label htmlFor='img-upload' className="image-upload-button">
+            <a href="#submit"><i className="fas fa-plus-circle plus-button"></i></a>
+            <a href="#submit"><p className="click-to-add">CLICK TO ADD</p></a>
+          </label>
         </div>
       </>
     );

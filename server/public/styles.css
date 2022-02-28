@@ -143,7 +143,7 @@ ul.nav-list {
 
 .nav-links > a {
   text-decoration: none;
-  margin-left: 0.6rem;
+  margin-left: 0.5rem;
   cursor: pointer;
   font-weight: 700;
 }
@@ -154,7 +154,7 @@ ul.nav-list {
 
 .user-icon {
   font-size: 1rem;
-  margin-left: 0.3rem;
+  margin-left: 0.2rem;
 }
 
 /* submit page */
@@ -340,7 +340,8 @@ select:focus {
 }
 
 .add-button {
-  margin-top: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
   text-align: center;
 }
 
