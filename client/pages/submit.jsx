@@ -49,7 +49,7 @@ export default class SubmitPage extends React.Component {
     formData.append('difficulty', this.state.difficulty);
     formData.append('location', this.state.location);
     formData.append('isDeleted', this.state.isDeleted);
-    formData.append('image', this.fileInputRef.current.files[0]);
+    formData.append('file-to-upload', this.fileInputRef.current.files[0]);
 
     fetch('/api/trails', {
       method: 'POST',

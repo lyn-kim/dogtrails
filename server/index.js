@@ -163,7 +163,7 @@ app.post('/api/trails', uploadsMiddleware, (req, res, next) => {
     throw new ClientError(400, 'trailName, length, difficulty, location, isDeleted are required fields');
   }
 
-  const url = `/images/${req.file.filename}`;
+  const url = req.file.location;
   const sql = `
     insert into "trails" ("userId", "trailName", "length", "difficulty", "location", "photoUrl", "isDeleted")
     values ($1, $2, $3, $4, $5, $6, $7)
