@@ -27,7 +27,7 @@ export default class AuthFormSignUp extends React.Component {
       },
       body: JSON.stringify(this.state)
     };
-    fetch('api/auth/sign-up', req)
+    fetch('/api/auth/sign-up', req)
       .then(res => res.json())
       .then(() => {
         this.setState({
