@@ -66,6 +66,7 @@ export default class Home extends React.Component {
             })
           }
         </div>
+        <p className='sign'>photos by Lyn♥ </p>
       </>
     );
 

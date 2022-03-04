@@ -114,6 +114,7 @@ app.get('/api/searched-trails', (req, res, next) => {
   const { trailName } = req.query;
   const sql = `
     select "trailId",
+           "userId",
            "trailName",
            "length",
            "difficulty",
@@ -137,6 +138,7 @@ app.get('/api/my-trails', (req, res, next) => {
   const { userId } = req.user;
   const sql = `
     select "trailId",
+           "userId",
            "trailName",
            "length",
            "difficulty",
@@ -161,7 +163,7 @@ app.post('/api/trails', uploadsMiddleware, (req, res, next) => {
     throw new ClientError(400, 'trailName, length, difficulty, location, isDeleted are required fields');
   }
 
-  const url = `/images/${req.file.filename}`;
+  const url = req.file.location;
   const sql = `
     insert into "trails" ("userId", "trailName", "length", "difficulty", "location", "photoUrl", "isDeleted")
     values ($1, $2, $3, $4, $5, $6, $7)
