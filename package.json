@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "argon2": "^0.28.3",
+    "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.4",
@@ -26,7 +27,6 @@
     "@babel/core": "^7.16.12",
     "@babel/plugin-transform-react-jsx": "^7.16.7",
     "babel-loader": "^8.2.3",
-    "dotenv": "^15.0.1",
     "eslint": "^7.29.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-html": "^6.1.2",
