@@ -13,7 +13,7 @@ import MyList from './pages/my-list';
 const imgArray = [
   {
     id: 0,
-    url: 'images/DSC02505.jpg'
+    url: 'images/DSC01406.jpg'
   },
   {
     id: 1,
@@ -21,7 +21,7 @@ const imgArray = [
   },
   {
     id: 2,
-    url: 'images/DSC01406.jpg'
+    url: 'images/DSC02505.jpg'
   }
 ];
 export default class App extends React.Component {

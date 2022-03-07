@@ -531,7 +531,7 @@ button.go-button {
   padding: 0.3rem 1rem 0.4rem;
   height: 11.4rem;
   width: 10rem;
-  border-radius: 0.4rem 0 0 0.4rem;
+  border-radius: 0.4rem;
 }
 
 .drawer-title {
