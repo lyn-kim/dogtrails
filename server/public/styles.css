@@ -143,7 +143,7 @@ ul.nav-list {
 
 .nav-links > a {
   text-decoration: none;
-  margin-left: 0.5rem;
+  margin-left: 0.8rem;
   cursor: pointer;
   font-weight: 700;
 }
@@ -509,4 +509,42 @@ button.go-button {
   font-weight: 300;
   bottom: 0.5rem;
   right: 1.5rem;
+}
+
+/* app drawer */
+
+.drawer-container {
+  position: relative;
+}
+
+.drawer-bg {
+  right: 0;
+  background-color: rgba(27, 27, 27, 0.8);
+  position: fixed;
+  padding: 0.5rem 1rem;
+  height: 10rem;
+  width: 12rem;
+  border-radius: 0.2rem;
+}
+
+.drawer-title {
+  color: rgb(199, 199, 199);
+  margin-bottom: 2rem;
+}
+
+.drawer-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.drawer-item {
+  color: rgb(199, 199, 199);
+  margin: 1.2rem 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.drawer-item:hover {
+  font-weight: 700;
+  color: white;
 }
