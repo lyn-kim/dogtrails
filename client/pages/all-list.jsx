@@ -34,12 +34,6 @@ export default class AllList extends React.Component {
             })
           }
         </div>
-        <div className="add-button">
-          <label htmlFor='img-upload' className="image-upload-button">
-            <a href="#submit"><i className="fas fa-plus-circle plus-button"></i></a>
-            <a href="#submit"><p className="click-to-add">CLICK TO ADD</p></a>
-          </label>
-        </div>
       </>
     );
   }
