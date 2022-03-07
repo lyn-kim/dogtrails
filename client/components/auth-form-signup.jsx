@@ -60,7 +60,6 @@ export default class AuthFormSignUp extends React.Component {
                   <label htmlFor="username" className="auth-input-label">Username:</label>
                   <input
                     required
-                    autoFocus
                     id="username"
                     type="text"
                     name="username"

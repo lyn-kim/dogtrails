@@ -143,7 +143,7 @@ ul.nav-list {
 
 .nav-links > a {
   text-decoration: none;
-  margin-left: 0.5rem;
+  margin-left: 0.8rem;
   cursor: pointer;
   font-weight: 700;
 }
@@ -509,4 +509,51 @@ button.go-button {
   font-weight: 300;
   bottom: 0.5rem;
   right: 1.5rem;
+}
+
+/* app drawer */
+
+.drawer {
+  position: relative;
+  display: flex;
+  justify-content: end;
+}
+
+.drawer-container {
+  position: absolute;
+  display: flex;
+  text-align: end;
+}
+
+.drawer-bg {
+  right: 0;
+  background-color: rgba(27, 27, 27, 0.8);
+  padding: 0.3rem 1rem 0.4rem;
+  height: 11.4rem;
+  width: 10rem;
+  border-radius: 0.4rem;
+}
+
+.drawer-title {
+  color: rgb(199, 199, 199);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgb(172, 171, 171);
+}
+
+.drawer-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.drawer-item {
+  display: inline-block;
+  color: rgb(199, 199, 199);
+  cursor: pointer;
+  text-decoration: none;
+  padding-bottom: 1rem;
+}
+
+.drawer-item:hover {
+  font-weight: 700;
+  color: white;
 }

@@ -13,7 +13,7 @@ import MyList from './pages/my-list';
 const imgArray = [
   {
     id: 0,
-    url: 'images/DSC02505.jpg'
+    url: 'images/DSC01406.jpg'
   },
   {
     id: 1,
@@ -21,7 +21,7 @@ const imgArray = [
   },
   {
     id: 2,
-    url: 'images/DSC01406.jpg'
+    url: 'images/DSC02505.jpg'
   }
 ];
 export default class App extends React.Component {
@@ -34,6 +34,7 @@ export default class App extends React.Component {
       authInProgress: false,
       user: null,
       isAuthorizing: true,
+      menuOpen: false,
       route: parseRoute(window.location.hash)
     };
     this.handleSearch = this.handleSearch.bind(this);
@@ -44,6 +45,9 @@ export default class App extends React.Component {
     this.handleCloseSignUpModal = this.handleCloseSignUpModal.bind(this);
     this.handleOpenSignUpModal = this.handleOpenSignUpModal.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
+    this.handleShowMenu = this.handleShowMenu.bind(this);
+    this.handleHideMenu = this.handleHideMenu.bind(this);
   }
 
   componentDidMount() {
@@ -73,6 +77,12 @@ export default class App extends React.Component {
     const { user, token } = result;
     window.localStorage.setItem('react-context-jwt', token);
     this.setState({ user });
+  }
+
+  handleSignOut() {
+    window.localStorage.removeItem('react-context-jwt');
+    this.setState({ user: null });
+    return <Home/>;
   }
 
   handleOpenDeleteModal(trailId) {
@@ -118,8 +128,33 @@ export default class App extends React.Component {
     this.setState({ authInProgress: false });
   }
 
+  handleShowMenu() {
+    this.setState({ menuOpen: true });
+  }
+
+  handleHideMenu() {
+    this.setState({ menuOpen: false });
+  }
+
   renderAuthForm() {
     return <AuthFormSignUp onSignIn={this.handleSignIn} onCloseAuthModal={this.handleCloseSignUpModal} />;
+  }
+
+  renderMenu() {
+    return (
+      <div className="drawer">
+        <div className="drawer-container">
+          <div className="drawer-bg">
+            <h2 className="drawer-title">User Menu</h2>
+            <ol className="drawer-list">
+              <li onClick={() => this.handleHideMenu()}><a className="drawer-item" href="#my-list">My List</a></li>
+              <li onClick={() => this.handleHideMenu()}><a className="drawer-item" href="#submit">Add A Trail</a></li>
+              <li onClick={() => this.handleSignOut()}><a onClick={() => this.handleHideMenu()} className="drawer-item" href="#">Sign Out</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   renderDeleteModal() {
@@ -170,7 +205,8 @@ export default class App extends React.Component {
           {this.state.authInProgress ? this.renderAuthForm() : null}
           <Home imgArray={imgArray}/>
           <div className="container">
-            <Header onOpenAuthModal={this.handleOpenSignUpModal} />
+            <Header onHideMenu={this.handleHideMenu} menuOpen={this.state.menuOpen} user={this.state.user} onShowMenu={this.handleShowMenu} onOpenAuthModal={this.handleOpenSignUpModal} />
+            {this.state.menuOpen ? this.renderMenu() : null}
             <div className="row">
               <div className="search-container column-full">
                 <div className="row">
