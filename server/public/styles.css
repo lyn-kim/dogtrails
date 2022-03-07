@@ -513,23 +513,31 @@ button.go-button {
 
 /* app drawer */
 
-.drawer-container {
+.drawer {
   position: relative;
+  display: flex;
+  justify-content: end;
+}
+
+.drawer-container {
+  position: absolute;
+  display: flex;
+  text-align: end;
 }
 
 .drawer-bg {
   right: 0;
   background-color: rgba(27, 27, 27, 0.8);
-  position: fixed;
-  padding: 0.5rem 1rem;
-  height: 10rem;
-  width: 12rem;
-  border-radius: 0.2rem;
+  padding: 0.3rem 1rem 0.4rem;
+  height: 11.4rem;
+  width: 10rem;
+  border-radius: 0.4rem 0 0 0.4rem;
 }
 
 .drawer-title {
   color: rgb(199, 199, 199);
-  margin-bottom: 2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgb(172, 171, 171);
 }
 
 .drawer-list {
@@ -538,10 +546,11 @@ button.go-button {
 }
 
 .drawer-item {
+  display: inline-block;
   color: rgb(199, 199, 199);
-  margin: 1.2rem 0;
   cursor: pointer;
   text-decoration: none;
+  padding-bottom: 1rem;
 }
 
 .drawer-item:hover {

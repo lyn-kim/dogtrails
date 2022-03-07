@@ -45,6 +45,7 @@ export default class App extends React.Component {
     this.handleCloseSignUpModal = this.handleCloseSignUpModal.bind(this);
     this.handleOpenSignUpModal = this.handleOpenSignUpModal.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
     this.handleShowMenu = this.handleShowMenu.bind(this);
     this.handleHideMenu = this.handleHideMenu.bind(this);
   }
@@ -76,6 +77,12 @@ export default class App extends React.Component {
     const { user, token } = result;
     window.localStorage.setItem('react-context-jwt', token);
     this.setState({ user });
+  }
+
+  handleSignOut() {
+    window.localStorage.removeItem('react-context-jwt');
+    this.setState({ user: null });
+    return <Home/>;
   }
 
   handleOpenDeleteModal(trailId) {
@@ -135,13 +142,16 @@ export default class App extends React.Component {
 
   renderMenu() {
     return (
-      <div className="drawer-container">
-        <div className="drawer-bg">
-          <h2 className="drawer-title">User Menu</h2>
-          <ol className="drawer-list">
-            <li onClick={() => this.handleHideMenu()}><a className="drawer-item" href="#my-list">My List</a></li>
-            <li onClick={() => this.handleHideMenu()} className="drawer-item">Sign Out</li>
-          </ol>
+      <div className="drawer">
+        <div className="drawer-container">
+          <div className="drawer-bg">
+            <h2 className="drawer-title">User Menu</h2>
+            <ol className="drawer-list">
+              <li onClick={() => this.handleHideMenu()}><a className="drawer-item" href="#my-list">My List</a></li>
+              <li onClick={() => this.handleHideMenu()}><a className="drawer-item" href="#submit">Add A Trail</a></li>
+              <li onClick={() => this.handleSignOut()}><a onClick={() => this.handleHideMenu()} className="drawer-item" href="#">Sign Out</a></li>
+            </ol>
+          </div>
         </div>
       </div>
     );
