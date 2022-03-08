@@ -17,7 +17,7 @@ const imgArray = [
   },
   {
     id: 1,
-    url: 'images/DSC02236.jpg'
+    url: 'images/IMG_8947.jpg'
   },
   {
     id: 2,
@@ -236,7 +236,8 @@ export default class App extends React.Component {
       {this.state.trailToDelete ? this.renderDeleteModal() : null}
       {this.state.authInProgress ? this.renderAuthForm() : null}
         <div className="container">
-          <Header onOpenAuthModal={this.handleOpenSignUpModal}/>
+          <Header onOpenAuthModal={this.handleOpenSignUpModal} user={this.state.user} menuOpen={this.state.menuOpen} onShowMenu={this.handleShowMenu} onHideMenu={this.handleHideMenu}/>
+          { this.state.menuOpen ? this.renderMenu() : null }
           { this.renderPage() }
         </div>
       </>
