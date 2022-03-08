@@ -32,6 +32,9 @@ export default class AllList extends React.Component {
         <div className="row justify-center" >
           <h3 className="add-trail-title">All Trails</h3>
         </div >
+        {!this.props.trails.length
+          ? <p className="no-trail-msg">Woof! No trails were found :-( </p>
+          : null}
         <div>
           {
             this.props.trails.filter(trail => !trail.isDeleted).map(trail => {

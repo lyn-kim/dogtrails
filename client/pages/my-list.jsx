@@ -1,6 +1,5 @@
 import React from 'react';
 import LoadingIndicator from '../components/loading-indicator';
-
 export default class MyList extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +36,9 @@ export default class MyList extends React.Component {
         <div className="row justify-center" >
           <h3 className="add-trail-title">My Trails</h3>
         </div >
+        {!this.state.trails.length
+          ? <p className="no-trail-msg">Woof! No trails were found :-( </p>
+          : null}
         <div>
           {
             this.state.trails.filter(trail => !trail.isDeleted).map(trail => {
