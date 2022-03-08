@@ -1,10 +1,12 @@
 import React from 'react';
+import LoadingIndicator from '../components/loading-indicator';
 
 export default class MyList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trails: []
+      trails: [],
+      fetchInProgress: false
     };
   }
 
@@ -15,14 +17,21 @@ export default class MyList extends React.Component {
         'X-Access-Token': window.localStorage.getItem('react-context-jwt')
       }
     })
+      .then(this.setState({ fetchInProgress: true }))
       .then(res => res.json())
       .then(trails => {
-        this.setState({ trails });
+        this.setState({
+          trails: trails,
+          fetchInProgress: false
+        });
       }
       );
   }
 
   render() {
+    if (this.state.fetchInProgress === true) {
+      return <LoadingIndicator />;
+    }
     return (
       <>
         <div className="row justify-center" >

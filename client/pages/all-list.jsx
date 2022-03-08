@@ -1,23 +1,32 @@
 import React from 'react';
+import LoadingIndicator from '../components/loading-indicator';
 
 export default class AllList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
+      fetchInProgress: false
     };
   }
 
   componentDidMount() {
     fetch('/api/all-users')
+      .then(this.setState({ fetchInProgress: true }))
       .then(res => res.json())
       .then(users => {
-        this.setState({ users });
+        this.setState({
+          users: users,
+          fetchInProgress: false
+        });
       }
       );
   }
 
   render() {
+    if (this.state.fetchInProgress === true) {
+      return <LoadingIndicator />;
+    }
     return (
         <>
         <div className="row justify-center" >
