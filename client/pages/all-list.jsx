@@ -40,7 +40,7 @@ export default class AllList extends React.Component {
 }
 
 function Trail(props) {
-  const { trailId, trailName, length, location, photoUrl, difficulty } = props.trail;
+  const { trailName, length, location, photoUrl, difficulty } = props.trail;
 
   return (
       <>
@@ -48,11 +48,6 @@ function Trail(props) {
           <div className="row">
             <div className="column-three-fourth trail-name">
               <p className="trail-name">{trailName}</p>
-            </div>
-            <div className="column-fourth trail-name text-align-end">
-              {
-                <a onClick={() => props.onOpenDeleteModal(trailId)}><i className="trash-icon fas fa-trash icon-margin"></i></a>
-              }
             </div>
           </div>
           <div className="row align-content-center">
