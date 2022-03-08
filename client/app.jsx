@@ -17,7 +17,7 @@ const imgArray = [
   },
   {
     id: 1,
-    url: 'images/DSC02236.jpg'
+    url: 'images/IMG_8947.jpg'
   },
   {
     id: 2,

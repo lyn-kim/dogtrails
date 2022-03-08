@@ -138,7 +138,7 @@ ul.nav-list {
 .nav-links {
   display: inline;
   list-style: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .nav-links > a {
@@ -352,15 +352,18 @@ select:focus {
   color: #436f22;
 }
 
+/* search bar */
 .search-container {
   margin-top: 8rem;
 }
 
 .quote {
-  color: black;
+  color: rgb(41, 41, 41);
+  font-style: italic;
+  letter-spacing: 0.03rem;
   margin: auto;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 900;
   margin-bottom: 1rem;
 }
 
