@@ -6,7 +6,7 @@ import Home from './pages/home';
 import AllList from './pages/all-list';
 import NotFound from './pages/not-found';
 import SearchList from './pages/search-list';
-import AuthFormSignUp from './components/auth-form-signup';
+import AuthFormLogin from './components/auth-form-login';
 import decodeToken from './lib/decode-token';
 import MyList from './pages/my-list';
 
@@ -137,7 +137,7 @@ export default class App extends React.Component {
   }
 
   renderAuthForm() {
-    return <AuthFormSignUp onSignIn={this.handleSignIn} onCloseAuthModal={this.handleCloseSignUpModal} />;
+    return <AuthFormLogin onSignIn={this.handleSignIn} onCloseAuthModal={this.handleCloseSignUpModal} />;
   }
 
   renderMenu() {

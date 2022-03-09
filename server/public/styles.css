@@ -495,6 +495,7 @@ button.go-button {
 .auth-check-msg {
   cursor: pointer;
   margin-top: 1.3rem;
+  margin-bottom: 0.2rem;
   text-align: center;
   font-size: 0.75rem;
   color: rgba(56, 56, 56, 0.8);
@@ -512,6 +513,19 @@ button.go-button {
   font-weight: 300;
   bottom: 0.5rem;
   right: 1.5rem;
+}
+
+.demo-user-btn {
+  cursor: pointer;
+  margin-top: 1.3rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(56, 56, 56, 0.8);
+}
+
+.demo-user-btn:hover {
+  text-decoration: underline;
 }
 
 /* app drawer */
