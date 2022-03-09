@@ -1,5 +1,5 @@
 import React from 'react';
-
+import SubmitProgressIndicator from '../components/submit-progress-indicator';
 export default class SubmitPage extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +8,8 @@ export default class SubmitPage extends React.Component {
       length: '',
       difficulty: '',
       location: '',
-      isDeleted: false
+      isDeleted: false,
+      fetchInProgress: false
     };
     this.fileInputRef = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,6 +59,7 @@ export default class SubmitPage extends React.Component {
         'X-Access-Token': window.localStorage.getItem('react-context-jwt')
       }
     })
+      .then(this.setState({ fetchInProgress: true }))
       .then(res => res.json())
       .then(result => {
         this.setState({
@@ -66,7 +68,8 @@ export default class SubmitPage extends React.Component {
           difficulty: '',
           location: '',
           isDeleted: false,
-          previewImageUrl: null
+          previewImageUrl: null,
+          fetchInProgress: false
         });
         this.fileInputRef.current.value = null;
       })
@@ -74,6 +77,9 @@ export default class SubmitPage extends React.Component {
   }
 
   render() {
+    if (this.state.fetchInProgress === true) {
+      return <SubmitProgressIndicator/>;
+    }
     return (
       <>
       <div className="row justify-center">

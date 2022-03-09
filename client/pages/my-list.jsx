@@ -1,10 +1,13 @@
 import React from 'react';
-
+import LoadingIndicator from '../components/loading-indicator';
+import NetworkError from './network-error';
 export default class MyList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trails: []
+      trails: [],
+      fetchInProgress: false,
+      networkError: false
     };
   }
 
@@ -15,22 +18,38 @@ export default class MyList extends React.Component {
         'X-Access-Token': window.localStorage.getItem('react-context-jwt')
       }
     })
+      .then(this.setState({ fetchInProgress: true }))
       .then(res => res.json())
       .then(trails => {
-        this.setState({ trails });
+        this.setState({
+          trails: trails,
+          fetchInProgress: false
+        });
       }
-      );
+      )
+      .catch(err => {
+        this.setState({ networkError: true });
+        console.error(err);
+      });
   }
 
   render() {
+    if (this.state.networkError) {
+      return <NetworkError />;
+    }
+    if (this.state.fetchInProgress) {
+      return <LoadingIndicator />;
+    }
+    const notDeletedTrails = this.state.trails.filter(trail => !trail.isDeleted).length;
     return (
       <>
         <div className="row justify-center" >
           <h3 className="add-trail-title">My Trails</h3>
         </div >
         <div>
-          {
-            this.state.trails.filter(trail => !trail.isDeleted).map(trail => {
+          { notDeletedTrails === 0
+            ? <p className="no-trail-msg">Woof! No trails were found :-( </p>
+            : this.state.trails.filter(trail => !trail.isDeleted).map(trail => {
               return (
                 <div key={trail.trailId} className="row trail-entry">
                   <Trail trail={trail} onOpenDeleteModal={this.props.onOpenDeleteModal} />

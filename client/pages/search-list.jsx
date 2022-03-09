@@ -1,25 +1,32 @@
 import React from 'react';
 import NotFound from './not-found';
+import LoadingIndicator from '../components/loading-indicator';
 
 export default class SearchList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      trails: []
+      trails: [],
+      fetchInProgress: false
     };
   }
 
   componentDidMount() {
     fetch('/api/searched-trails?trailName=' + encodeURIComponent(`${this.props.searchKeyword}`))
+      .then(this.setState({ fetchInProgress: true }))
       .then(res => res.json())
       .then(trails => {
         this.setState({
-          trails: trails
+          trails: trails,
+          fetchInProgress: false
         });
       });
   }
 
   render() {
+    if (this.state.fetchInProgress === true) {
+      return <LoadingIndicator />;
+    }
     if (this.state.trails.length === 0) {
       return <NotFound/>;
     }
@@ -40,19 +47,13 @@ export default class SearchList extends React.Component {
             })
           }
         </div>
-        <div className="add-button">
-          <label htmlFor='img-upload' className="image-upload-button">
-            <a href="#submit"><i className="fas fa-plus-circle plus-button"></i></a>
-            <a href="#submit"><p className="click-to-add">CLICK TO ADD</p></a>
-          </label>
-        </div>
       </>
     );
   }
 }
 
 function Trail(props) {
-  const { trailId, trailName, length, location, photoUrl, difficulty } = props.trail;
+  const { trailName, length, location, photoUrl, difficulty } = props.trail;
 
   return (
     <>
@@ -60,11 +61,6 @@ function Trail(props) {
         <div className="row">
           <div className="column-three-fourth trail-name">
             <p className="trail-name">{trailName}</p>
-          </div>
-          <div className="column-fourth trail-name text-align-end">
-            {
-              <a onClick={() => props.onOpenDeleteModal(trailId)}><i className="trash-icon fas fa-trash icon-margin"></i></a>
-            }
           </div>
         </div>
         <div className="row align-content-center">

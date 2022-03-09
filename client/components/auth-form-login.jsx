@@ -43,7 +43,7 @@ export default class AuthFormLogin extends React.Component {
 
   render() {
     if (this.state.signup) {
-      return <AuthFormSignUp onCloseAuthModal={this.props.onCloseAuthModal}/>;
+      return <AuthFormSignUp onSignIn={this.props.onSignIn} onCloseAuthModal={this.props.onCloseAuthModal}/>;
     }
     return (
       <div className="position-relative">
@@ -63,7 +63,7 @@ export default class AuthFormLogin extends React.Component {
                     type="text"
                     name="username"
                     className="auth-input"
-                    value={this.state.user}
+                    value={this.state.username}
                     onChange={this.handleChange}
                   />
                 </div>
@@ -81,7 +81,10 @@ export default class AuthFormLogin extends React.Component {
                 <div className="row">
                   <button type="submit" className="auth-submit-btn">Login</button>
                 </div>
-                <a onClick={this.handleOpenSignupModal}><p className="auth-check-msg">First time? Sign Up</p></a>
+                <div className='row space-between'>
+                  <a onClick={this.handleOpenSignupModal}><p className="auth-check-msg">First time? Sign Up</p></a>
+                  <a onClick={() => this.setState({ username: 'demo', password: 'password1' })}><p className="demo-user-btn">Demo User Login</p></a>
+                </div>
               </div>
             </form>
           </div>
