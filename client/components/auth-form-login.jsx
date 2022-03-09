@@ -64,8 +64,7 @@ export default class AuthFormLogin extends React.Component {
                     name="username"
                     className="auth-input"
                     value={this.state.username}
-                    onChange={this.handleChange}
-                  />
+                    onChange={this.handleChange} />
                 </div>
                 <div className="row">
                   <label htmlFor="password" className="auth-input-label">Password:</label>
@@ -92,5 +91,4 @@ export default class AuthFormLogin extends React.Component {
       </div>
     );
   }
-
 }
