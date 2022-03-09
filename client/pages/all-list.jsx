@@ -81,13 +81,11 @@ function Trail(props) {
                 }
               </div>
             </div>
-
-            </div>
+          </div>
           <div className="row">
             <p className="position-absolute trail-address">{location}</p>
           </div>
         </div>
-
         <div className="column-two-fifth">
           <img className="trail-img" src={photoUrl} alt="image of trail"/>
         </div>

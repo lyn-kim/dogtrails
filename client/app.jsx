@@ -60,7 +60,6 @@ export default class App extends React.Component {
     const token = window.localStorage.getItem('react-context-jwt');
     const user = token ? decodeToken(token) : null;
     this.setState({ user, isAuthorizing: false });
-
     this.fetchTrails();
   }
 
@@ -116,7 +115,6 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
-
     this.fetchTrails();
   }
 

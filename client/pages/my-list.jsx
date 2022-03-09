@@ -85,26 +85,18 @@ function Trail(props) {
             <div className="row">
               {
                 difficulty === 'easy'
-                  ? (
-                    <p className="intensity-rating-easy">EASY</p>
-                    )
+                  ? (<p className="intensity-rating-easy">EASY</p>)
                   : difficulty === 'moderate'
-                    ? (
-                      <p className="intensity-rating-moderate">MODERATE</p>
-                      )
-                    : (
-                      <p className="intensity-rating-difficult">DIFFICULT</p>
-                      )
+                    ? (<p className="intensity-rating-moderate">MODERATE</p>)
+                    : (<p className="intensity-rating-difficult">DIFFICULT</p>)
               }
             </div>
           </div>
-
         </div>
         <div className="row">
           <p className="position-absolute trail-address">{location}</p>
         </div>
       </div>
-
       <div className="column-two-fifth">
         <img className="trail-img" src={photoUrl} alt="image of trail" />
       </div>

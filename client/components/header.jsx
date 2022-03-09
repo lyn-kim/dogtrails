@@ -20,11 +20,11 @@ export default class Header extends React.Component {
               <li className="nav-links"><a href="#all-list">EXPLORE</a></li>
               <li className="nav-links">
                 {
-                <a onClick={
-                  this.props.user === null
-                    ? () => this.props.onOpenAuthModal()
-                    : !this.props.menuOpen ? () => this.props.onShowMenu() : () => this.props.onHideMenu()
-                }><i className="user-icon fas fa-user"></i></a>
+                  <a onClick={
+                    this.props.user === null
+                      ? () => this.props.onOpenAuthModal()
+                      : !this.props.menuOpen ? () => this.props.onShowMenu() : () => this.props.onHideMenu()
+                  }><i className="user-icon fas fa-user"></i></a>
                 }
               </li>
             </ul>

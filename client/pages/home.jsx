@@ -50,7 +50,6 @@ export default class Home extends React.Component {
   }
 
   render() {
-
     const imgArray = this.props.imgArray;
     return (
       <>
@@ -69,7 +68,5 @@ export default class Home extends React.Component {
         <p className='sign'>photos by Lyn♥ </p>
       </>
     );
-
   }
-
 }
