@@ -182,7 +182,7 @@ export default class App extends React.Component {
   renderPage() {
     const { route } = this.state;
     if (route.path === 'all-list') {
-      return <AllList trails={this.state.trails} onOpenDeleteModal={this.handleOpenDeleteModal} />;
+      return <AllList onOpenDeleteModal={this.handleOpenDeleteModal} />;
     }
     if (route.path === 'my-list') {
       return <MyList onOpenDeleteModal={this.handleOpenDeleteModal}/>;

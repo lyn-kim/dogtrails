@@ -782,3 +782,14 @@ button.go-button {
       -1.8em -1.8em 0 0 #436f22;
   }
 }
+
+/* connection error message */
+.error-title {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.error-message {
+  font-size: 1rem;
+  text-align: center;
+}
