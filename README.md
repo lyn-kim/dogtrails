@@ -16,8 +16,7 @@ https://dogtrails.herokuapp.com/
 * JavaScript
 * CSS3
 * HTML5
-* Multer S3
-* AWS /AWS SDK
+* AWS S3
 * Babel
 * Webpack
 * Argon2
@@ -71,6 +70,8 @@ https://dogtrails.herokuapp.com/
     ```shell
     cp .env.example .env
     ```
+    Note: DATABASE_URL in `.env` should be updated to `postgres://dev:dev@localhost/<yourDatabaseName>`.
+    
 6. Create a new database with PostgreSQL.
     ```shell
     createdb yourDatabaseName
