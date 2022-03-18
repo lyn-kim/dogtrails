@@ -80,7 +80,7 @@ https://dogtrails.herokuapp.com/
    * Click the `Create bucket` button.
    * Pick a unique name for your bucket.
    * Under Object Ownership, choose `ACLs enabled` and `Bucket owner preferred`.
-   * `Uncheck` the option to Block *all* public access. And leave the other boxes unchecked too.
+   * `Uncheck` the option to Block *all* public access. Leave the other boxes unchecked as well.
    * Check the box that acknowledges public objects in the bucket.
    * Click Create bucket at the bottom of the page.
    * ![s3-bucket-directions](https://user-images.githubusercontent.com/89041368/158914286-e232ccbb-32d6-4e15-89c8-fd4d5dcdb454.JPG)
