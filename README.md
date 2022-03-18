@@ -83,7 +83,6 @@ https://dogtrails.herokuapp.com/
    * `Uncheck` the option to Block *all* public access. Leave the other boxes unchecked as well.
    * Check the box that acknowledges public objects in the bucket.
    * Click Create bucket at the bottom of the page.
-   * ![s3-bucket-directions](https://user-images.githubusercontent.com/89041368/158914286-e232ccbb-32d6-4e15-89c8-fd4d5dcdb454.JPG)
 
 5. Create a new database with PostgreSQL.
     ```shell
