@@ -63,19 +63,38 @@ https://dogtrails.herokuapp.com/
     npm install
     ```
 3. Create an [AWS account](https://aws.amazon.com/free/) then create an [IAM user](https://console.aws.amazon.com/iam/home) for S3.
+   * Open IAM service in your AWS page.
+   * From the left column, click on the `Users` link and then `Add users`.
+   * Enter a username for the user.
+   * For the AWS access type, check the `Access key` option for programmatic access.
+   * Click `Next: Permissions`.
+   * You have three options for `Set permissions`. Select `Attach existing policies directly`.
+   * Filter the policies to file the `AmazonS3FullAccess` policy and check its box.
+   * Skip through the `Tags` step to `Review`.
+   * Create the user.
+   * You will be shown an `access key id` and a `secret access key`. Copy these to a safe place that only you can access.
+   * Done creating the user!
+   * ![IAM-direction](https://user-images.githubusercontent.com/89041368/158915105-51276f93-4d93-453f-b8db-54ef0ef9cac4.png)
 
 4. Create a [S3 bucket](https://console.aws.amazon.com/s3/home) for storing your uploads.
+   * Click the `Create bucket` button.
+   * Pick a unique name for your bucket.
+   * Under Object Ownership, choose `ACLs enabled` and `Bucket owner preferred`.
+   * `Uncheck` the option to Block *all* public access. And leave the other boxes unchecked too.
+   * Check the box that acknowledges public objects in the bucket.
+   * Click Create bucket at the bottom of the page.
+   * ![s3-bucket-directions](https://user-images.githubusercontent.com/89041368/158914286-e232ccbb-32d6-4e15-89c8-fd4d5dcdb454.JPG)
 
-5. Copy the `.env.example` into `.env` and enter your own AWS credentials (access keys and s3 bucket name) and database url.
+5. Create a new database with PostgreSQL.
+    ```shell
+    createdb trailApp
+    ```
+6. Copy the `.env.example` into `.env` and enter your own AWS credentials (access keys and s3 bucket name) and database url.
     ```shell
     cp .env.example .env
     ```
-    Note: DATABASE_URL in `.env` should be updated to `postgres://dev:dev@localhost/<yourDatabaseName>`.
+    Note: DATABASE_URL in `.env` should be updated to `postgres://dev:dev@localhost/trailApp`.
     
-6. Create a new database with PostgreSQL.
-    ```shell
-    createdb yourDatabaseName
-    ```
 7. Import the database template into PostgreSQL.
     ```shell
     npm run db:import
@@ -84,16 +103,20 @@ https://dogtrails.herokuapp.com/
     ```shell
     sudo service postgresql start
     ```
-9. Launch the `pgweb` PostgreSQL database client GUI to review your database at `http://localhost:8081`.
+9. Gain access to pgweb database by creating a new user.
     ```shell
-    pgweb --db=<yourDatabaseName>
+    createuser dev
     ```
-10. Build your main.js script with npm.
+10. Launch the `pgweb` PostgreSQL database client GUI to review your database at `http://localhost:8081`.
+    ```shell
+    pgweb --db=trailApp
+    ```
+11. Build your main.js script with npm.
     ```shell
     npm run build
     ```
-11. Start your project and open `http://localhost:3000` in the browser.
+12. Start your project and open `http://localhost:3000` in the browser.
     ```shell
     npm run dev
     ```
-12. Start adding some trails!
+13. Start adding some trails!
