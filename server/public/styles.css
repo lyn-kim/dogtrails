@@ -296,26 +296,25 @@ select:focus {
   border-radius: 8px;
 }
 
-.intensity-rating-easy,
-.intensity-rating-moderate,
-.intensity-rating-difficult {
+.pill {
   margin-top: 0.2rem;
   font-size: 1.2rem;
   font-weight: 300;
   padding: 0.6rem 0.8rem 0.3rem;
   color: white;
   border-radius: 12px;
+  justify-content: center;
 }
 
-.intensity-rating-easy {
+.pill-easy {
   background-color: #a5cd51;
 }
 
-.intensity-rating-moderate {
+.pill-moderate {
   background-color: #d29d15;
 }
 
-.intensity-rating-difficult {
+.pill-difficult {
   background-color: #d21c1c;
 }
 
