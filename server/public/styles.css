@@ -247,7 +247,7 @@ select:focus {
   margin-bottom: 1.3rem;
   padding: 20px;
   width: 100%;
-  height: 270px;
+  min-height: 270px;
   background-color: #f9faf8;
   border-radius: 8px;
   box-shadow: 3px 3px 6px 0 rgba(153, 153, 153, 0.2);
@@ -264,6 +264,10 @@ select:focus {
   font-size: 1.5rem;
   font-weight: 700;
   margin-top: 0.3rem;
+}
+
+.trail-description-element {
+  margin-bottom: 1.5rem;
 }
 
 .icon-margin {
@@ -283,39 +287,37 @@ select:focus {
 
 .trail-address {
   font-size: 1.3rem;
-  bottom: 0;
-  margin-bottom: 0;
   line-height: 1.5rem;
 }
 
 .trail-img {
   margin-left: 0.3rem;
+  margin-bottom: 1.5rem;
   width: 100%;
   height: 14.3rem;
   object-fit: cover;
   border-radius: 8px;
 }
 
-.intensity-rating-easy,
-.intensity-rating-moderate,
-.intensity-rating-difficult {
+.pill {
   margin-top: 0.2rem;
   font-size: 1.2rem;
   font-weight: 300;
   padding: 0.6rem 0.8rem 0.3rem;
   color: white;
   border-radius: 12px;
+  display: inline-block;
 }
 
-.intensity-rating-easy {
+.pill-easy {
   background-color: #a5cd51;
 }
 
-.intensity-rating-moderate {
+.pill-moderate {
   background-color: #d29d15;
 }
 
-.intensity-rating-difficult {
+.pill-difficult {
   background-color: #d21c1c;
 }
 
@@ -806,4 +808,27 @@ button.go-button {
 .error-message {
   font-size: 1rem;
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .trail-entry-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    order: -1;
+  }
+
+  .trail-entry {
+    display: flex;
+  }
+
+  .trail-description-element {
+    margin-bottom: 0;
+  }
+
+  .trail-img {
+    width: 40%;
+    margin-left: 1rem;
+    margin-bottom: 0;
+  }
 }

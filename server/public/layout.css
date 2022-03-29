@@ -23,8 +23,7 @@
 }
 
 .column-full,
-.column-half,
-.column-three-fifth {
+.column-half {
   width: 100%;
 }
 
@@ -72,10 +71,6 @@
   .column-two-fifth {
     width: calc(100% / 5 * 2);
   }
-
-  p.trail-name {
-    margin-bottom: 2.8rem;
-  }
 }
 
 div > .column-half,
@@ -87,11 +82,5 @@ div.column-half,
 @media screen and (max-width: 768px) {
   .container {
     min-width: 375px;
-  }
-}
-
-@media screen and (min-width: 403px) {
-  p.trail-name {
-    margin-bottom: 2.8rem;
   }
 }
