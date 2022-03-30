@@ -1,7 +1,8 @@
 import React from 'react';
 
 export default function Trail(props) {
-  const { trailName, length, location, photoUrl, difficulty } = props.trail;
+  const { isDeleteButtonVisible } = props;
+  const { trailId, trailName, length, location, photoUrl, difficulty } = props.trail;
 
   return (
     <>
@@ -11,6 +12,16 @@ export default function Trail(props) {
           <div className="column-three-fourth trail-name">
             <p className="trail-name">{trailName}</p>
           </div>
+          { isDeleteButtonVisible && (
+            <div className="column-fourth trail-name text-align-end">
+              {
+                <a onClick={() => props.onOpenDeleteModal(trailId)}>
+                  <i className="trash-icon fas fa-trash icon-margin"></i>
+                </a>
+              }
+            </div>
+          )
+          }
         </div>
         <div className="row align-content-center">
           <div className="row display-block text-align-center">
