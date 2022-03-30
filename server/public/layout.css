@@ -23,7 +23,8 @@
 }
 
 .column-full,
-.column-half {
+.column-half,
+.column-three-fifth {
   width: 100%;
 }
 
@@ -90,7 +91,7 @@ div.column-half,
   padding-right: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .container {
     min-width: 375px;
   }
