@@ -8,16 +8,18 @@ export default function Trail(props) {
     <article className="trail-entry">
       <img className="trail-img" src={photoUrl} alt="image of trail" />
       <div className="column-three-fifth trail-entry-description">
-        <div className="row column-three-fourth trail-name trail-description-element">{trailName}</div>
-        {isDeleteButtonVisible && (
-          <div className="column-fourth trail-name text-align-end">
-            {
-              <a onClick={() => props.onOpenDeleteModal(trailId)}>
-                <i className="trash-icon fas fa-trash icon-margin"></i>
-              </a>
-            }
-          </div>
-        )}
+        <div className="row">
+          <div className="column-three-fourth trail-name trail-description-element">{trailName}</div>
+          {isDeleteButtonVisible && (
+            <div className="column-fourth trail-name text-align-end">
+              {
+                <a onClick={() => props.onOpenDeleteModal(trailId)}>
+                  <i className="trash-icon fas fa-trash icon-margin"></i>
+                </a>
+              }
+            </div>
+          )}
+        </div>
         <div className="row display-block trail-description-element">
           <span className="trail-length-num">{length}</span>
           <span className="trail-length-mi">miles</span>

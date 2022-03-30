@@ -287,8 +287,6 @@ select:focus {
 
 .trail-address {
   font-size: 1.3rem;
-  bottom: 0;
-  margin-bottom: 0;
   line-height: 1.5rem;
 }
 
