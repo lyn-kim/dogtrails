@@ -23,8 +23,7 @@
 }
 
 .column-full,
-.column-half,
-.column-three-fifth {
+.column-half {
   width: 100%;
 }
 
@@ -32,10 +31,6 @@
   div.column-half,
   div > .column-full {
     padding-right: 0;
-  }
-
-  .column-two-fifth {
-    width: 0;
   }
 
   div.column-three-fourth.trail-name {
@@ -73,8 +68,19 @@
     width: calc(100% / 5 * 2);
   }
 
-  p.trail-name {
-    margin-bottom: 2.8rem;
+  .trail-entry {
+    display: flex;
+  }
+
+  .trail-entry-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    order: -1;
+  }
+
+  .trail-img {
+    width: 40%;
   }
 }
 
@@ -88,10 +94,9 @@ div.column-half,
   .container {
     min-width: 375px;
   }
-}
 
-@media screen and (min-width: 403px) {
-  p.trail-name {
-    margin-bottom: 2.8rem;
+  .trail-img {
+    width: 98.5%;
+    margin-bottom: 1rem;
   }
 }
