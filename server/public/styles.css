@@ -452,7 +452,6 @@ button.go-button {
 .auth-box {
   margin: auto;
   width: 17rem;
-  height: 17rem;
   background-color: white;
   border-radius: 0.4rem;
   padding: 1.4rem;
@@ -800,12 +799,18 @@ button.go-button {
 }
 
 /* connection error message */
-.error-title {
+.network-error-title {
   font-size: 1.5rem;
   text-align: center;
 }
 
-.error-message {
+.network-error-message {
   font-size: 1rem;
   text-align: center;
+}
+
+.error-message {
+  font-size: 0.8rem;
+  color: #d46046;
+  margin-bottom: 1rem;
 }

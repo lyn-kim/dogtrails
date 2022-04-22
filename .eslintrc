@@ -44,7 +44,8 @@
         "named": "never",
         "asyncArrow": "always"
       }
-    ]
+      ],
+    "comma-dangle": ["error", "always-multiline"]
   },
   "overrides": [
     {

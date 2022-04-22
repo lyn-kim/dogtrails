@@ -6,7 +6,8 @@ export default class AuthFormSignUp extends React.Component {
     this.state = {
       username: '',
       password: '',
-      login: false
+      login: false,
+      error: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,7 +16,7 @@ export default class AuthFormSignUp extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value, error: null });
   }
 
   handleSubmit(event) {
@@ -23,19 +24,19 @@ export default class AuthFormSignUp extends React.Component {
     const req = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(this.state),
     };
     fetch('/api/auth/sign-up', req)
-      .then(res => res.json())
-      .then(() => {
-        this.setState({
-          username: '',
-          password: ''
-        });
+      .then(res => {
+        if (res.status === 409) {
+          this.setState({ error: 'Username already taken' });
+          return;
+        }
+
+        this.handleOpenLoginModal();
       });
-    this.handleOpenLoginModal();
   }
 
   handleOpenLoginModal() {
@@ -56,6 +57,9 @@ export default class AuthFormSignUp extends React.Component {
                   <a onClick={() => this.props.onCloseAuthModal()} ><i className="exit-icon fas fa-times"></i></a>
                   <p className="get-started-msg">Get Started</p>
                 </div>
+                {this.state.error && (
+                  <div className="row error-message">{this.state.error}</div>
+                )}
                 <div className="row">
                   <label htmlFor="username" className="auth-input-label">Username:</label>
                   <input
