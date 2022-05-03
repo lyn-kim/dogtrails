@@ -10,10 +10,7 @@ const authorizationMiddleware = require('./authorization-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
 
 const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  connectionString: process.env.DATABASE_URL
 });
 
 const app = express();
@@ -21,6 +18,8 @@ const jsonMiddleware = express.json();
 
 app.use(jsonMiddleware);
 app.use(staticMiddleware);
+
+const UNIQUE_KEY_VIOLATION_ERROR_CODE = '23505';
 
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { username, password } = req.body;
@@ -42,7 +41,14 @@ app.post('/api/auth/sign-up', (req, res, next) => {
       const [user] = result.rows;
       res.status(201).json(user);
     })
-    .catch(err => next(err));
+    .catch(err => {
+      if (err.code === UNIQUE_KEY_VIOLATION_ERROR_CODE) {
+        res.status(409).json({
+          error: 'duplicate username found'
+        });
+      }
+      next(err);
+    });
 });
 
 app.post('/api/auth/sign-in', (req, res, next) => {
