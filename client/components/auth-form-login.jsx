@@ -6,7 +6,8 @@ export default class AuthFormLogin extends React.Component {
     this.state = {
       username: '',
       password: '',
-      signup: false
+      signup: false,
+      error: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,7 +16,10 @@ export default class AuthFormLogin extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({
+      [name]: value,
+      error: null
+    });
   }
 
   handleSubmit(event) {
@@ -28,9 +32,16 @@ export default class AuthFormLogin extends React.Component {
       body: JSON.stringify(this.state)
     };
     fetch('/api/auth/sign-in', req)
-      .then(res => res.json())
+      .then(res => {
+        const result = res.json();
+        if (res.status === 401) {
+          this.setState({ error: 'Invalid username or password' });
+          return;
+        }
+        return result;
+      })
       .then(result => {
-        if (result.user && result.token) {
+        if (result?.user && result?.token) {
           this.props.onSignIn(result);
           this.props.onCloseAuthModal();
         }
@@ -55,6 +66,9 @@ export default class AuthFormLogin extends React.Component {
                   <a onClick={() => this.props.onCloseAuthModal()} ><i className="exit-icon fas fa-times"></i></a>
                   <p className="get-started-msg">User Login</p>
                 </div>
+                {this.state.error && (
+                  <div className="row error-message">{this.state.error}</div>
+                )}
                 <div className="row">
                   <label htmlFor="username" className="auth-input-label">Username:</label>
                   <input
