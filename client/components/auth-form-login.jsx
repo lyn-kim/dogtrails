@@ -40,7 +40,7 @@ export default class AuthFormLogin extends React.Component {
         return result;
       })
       .then(result => {
-        if (result.user && result.token) {
+        if (result?.user && result?.token) {
           this.props.onSignIn(result);
           this.props.onCloseAuthModal();
         }
@@ -65,6 +65,9 @@ export default class AuthFormLogin extends React.Component {
                   <a onClick={() => this.props.onCloseAuthModal()} ><i className="exit-icon fas fa-times"></i></a>
                   <p className="get-started-msg">User Login</p>
                 </div>
+                {this.state.error && (
+                  <div className="row error-message">{this.state.error}</div>
+                )}
                 <div className="row">
                   <label htmlFor="username" className="auth-input-label">Username:</label>
                   <input
