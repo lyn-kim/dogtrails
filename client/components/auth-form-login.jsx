@@ -6,7 +6,8 @@ export default class AuthFormLogin extends React.Component {
     this.state = {
       username: '',
       password: '',
-      signup: false
+      signup: false,
+      error: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
