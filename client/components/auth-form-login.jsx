@@ -15,7 +15,10 @@ export default class AuthFormLogin extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({
+      [name]: value,
+      error: null
+    });
   }
 
   handleSubmit(event) {
@@ -28,7 +31,14 @@ export default class AuthFormLogin extends React.Component {
       body: JSON.stringify(this.state)
     };
     fetch('/api/auth/sign-in', req)
-      .then(res => res.json())
+      .then(res => {
+        const result = res.json();
+        if (res.status === 401) {
+          this.setState({ error: 'Invalid username or password' });
+          return;
+        }
+        return result;
+      })
       .then(result => {
         if (result.user && result.token) {
           this.props.onSignIn(result);
