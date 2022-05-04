@@ -1,51 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NotFound from './not-found';
 import LoadingIndicator from '../components/loading-indicator';
+import NetworkError from './network-error';
 import Trail from '../components/trail';
 
-export default class SearchList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      trails: [],
-      fetchInProgress: false
-    };
+export default function SearchList(props) {
+
+  const [trails, setTrailList] = useState([]);
+  const [fetchInProgress, setFetchInProgress] = useState(false);
+  const [networkError, setNetworkErrorStatus] = useState(false);
+
+  useEffect(() => {
+    fetchTrails();
+  }, []);
+
+  const fetchTrails = async () => {
+    setFetchInProgress(true);
+    try {
+      const response = await fetch('/api/searched-trails?trailName=' + encodeURIComponent(`${props.searchKeyword}`));
+      const trails = await response.json();
+      setTrailList(trails);
+      setFetchInProgress(false);
+    } catch (err) {
+      setNetworkErrorStatus(true);
+      console.error(err);
+    }
+  };
+
+  if (networkError) {
+    return <NetworkError />;
   }
 
-  componentDidMount() {
-    fetch('/api/searched-trails?trailName=' + encodeURIComponent(`${this.props.searchKeyword}`))
-      .then(this.setState({ fetchInProgress: true }))
-      .then(res => res.json())
-      .then(trails => {
-        this.setState({
-          trails: trails,
-          fetchInProgress: false
-        });
-      });
+  if (fetchInProgress === true) {
+    return <LoadingIndicator />;
   }
 
-  render() {
-    if (this.state.fetchInProgress === true) {
-      return <LoadingIndicator />;
-    }
-    if (this.state.trails.length === 0) {
-      return <NotFound/>;
-    }
-    return (
-      <>
-        <div className="row justify-center" >
-          <h3 className="add-trail-title">Search Result</h3>
-        </div >
-        <div>
-          {
-            this.state.trails.filter(trail => !trail.isDeleted).map(trail => {
-              return (
-                <Trail key={trail.trailId} trail={trail} onOpenDeleteModal={this.props.onOpenDeleteModal} />
-              );
-            })
-          }
-        </div>
-      </>
-    );
+  if (trails.length === 0) {
+    return <NotFound/>;
   }
+
+  return (
+    <>
+      <div className="row justify-center" >
+        <h3 className="add-trail-title">Search Result</h3>
+      </div >
+      <div>
+        {
+          trails.filter(trail => !trail.isDeleted).map(trail => {
+            return (
+              <Trail key={trail.trailId} trail={trail} onOpenDeleteModal={props.onOpenDeleteModal} />
+            );
+          })
+        }
+      </div>
+    </>
+  );
+
 }
