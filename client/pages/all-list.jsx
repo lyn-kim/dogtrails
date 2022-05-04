@@ -1,57 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LoadingIndicator from '../components/loading-indicator';
 import NetworkError from './network-error';
 import Trail from '../components/trail';
-export default class AllList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      trails: [],
-      fetchInProgress: false,
-      networkError: false
-    };
-  }
 
-  componentDidMount() {
-    this.setState({ fetchInProgress: true });
-    fetch('/api/all-trails')
-      .then(res => res.json())
-      .then(trails => {
-        this.setState({
-          trails: trails,
-          fetchInProgress: false
-        });
-      })
-      .catch(err => {
-        this.setState({ networkError: true });
-        console.error(err);
-      });
-  }
+export default function AllList(props) {
 
-  render() {
-    if (this.state.networkError) {
-      return <NetworkError />;
+  const [trails, setTrailList] = useState([]);
+  const [fetchInProgress, setFetchInProgress] = useState(false);
+  const [networkError, setNetworkErrorStatus] = useState(false);
+
+  useEffect(() => {
+    fetchTrails();
+  }, []);
+
+  const fetchTrails = async () => {
+    setFetchInProgress(true);
+    try {
+      const response = await fetch('/api/all-trails');
+      const trails = await response.json();
+      setTrailList(trails);
+      setFetchInProgress(false);
+    } catch (err) {
+      setNetworkErrorStatus(true);
+      console.error(err);
     }
-    if (this.state.fetchInProgress) {
-      return <LoadingIndicator />;
-    }
-    const notDeletedTrails = this.state.trails.filter(trail => !trail.isDeleted).length;
-    return (
-      <>
-        <div className="row justify-center" >
-          <h3 className="add-trail-title">All Trails</h3>
-        </div >
-        <div>
-          {notDeletedTrails === 0
-            ? <p className="no-trail-msg">Woof! No trails were found :-( </p>
-            : this.state.trails.filter(trail => !trail.isDeleted).map(trail => {
-              return (
-                <Trail key={trail.trailId} trail={trail} onOpenDeleteModal={this.props.onOpenDeleteModal} />
-              );
-            })
-          }
-        </div>
-      </>
-    );
+  };
+
+  if (networkError) {
+    return <NetworkError />;
   }
+  if (fetchInProgress) {
+    return <LoadingIndicator />;
+  }
+  const notDeletedTrails = trails.filter(trail => !trail.isDeleted).length;
+  return (
+    <>
+      <div className="row justify-center" >
+        <h3 className="add-trail-title">All Trails</h3>
+      </div >
+      <div>
+        {notDeletedTrails === 0
+          ? <p className="no-trail-msg">Woof! No trails were found :-( </p>
+          : trails.filter(trail => !trail.isDeleted).map(trail => {
+            return (
+              <Trail key={trail.trailId} trail={trail} onOpenDeleteModal={props.onOpenDeleteModal} />
+            );
+          })
+        }
+      </div>
+    </>
+  );
 }
