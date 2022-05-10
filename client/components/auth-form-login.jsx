@@ -9,7 +9,7 @@ export default function AuthFormLogin(props) {
   });
   const [signup, setSignupStatus] = useState(false);
   const [error, setErrorStatus] = useState(null);
-  const [demoUser, setDemoUser] = useState({
+  const [demoUser] = useState({
     username: 'demo',
     password: 'password1'
   });
@@ -94,7 +94,7 @@ export default function AuthFormLogin(props) {
               </div>
               <div className='row space-between'>
                 <a onClick={handleOpenSignupModal}><p className="auth-check-msg">First time? Sign Up</p></a>
-                <a onClick={() => setDemoUser(demoUser)} ><p className="demo-user-btn">Demo User Login</p></a>
+                <a onClick={() => setUserInfo(demoUser)} ><p className="demo-user-btn">Demo User Login</p></a>
               </div>
             </div>
           </form>
