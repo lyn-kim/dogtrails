@@ -1,24 +1,19 @@
 import React, { useState } from 'react';
 import AuthFormSignUp from './auth-form-signup';
 
+const DEFAULT_USERNAME = 'demo';
+const DEFAULT_PASSWORD = 'password1';
+
 export default function AuthFormLogin(props) {
 
-  const [userInfo, setUserInfo] = useState({
-    username: '',
-    password: ''
-  });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [signup, setSignupStatus] = useState(false);
   const [error, setErrorStatus] = useState(null);
-  const [demoUser] = useState({
-    username: 'demo',
-    password: 'password1'
-  });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setUserInfo({ ...userInfo, [name]: value });
+  const clearError = () => {
     setErrorStatus(null);
-  }
+  };
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -27,7 +22,10 @@ export default function AuthFormLogin(props) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(userInfo)
+      body: JSON.stringify({
+        username,
+        password
+      })
     };
     try {
       const response = await fetch('/api/auth/sign-in', req);
@@ -75,8 +73,11 @@ export default function AuthFormLogin(props) {
                   type="text"
                   name="username"
                   className="auth-input"
-                  value={userInfo.username}
-                  onChange={handleChange} />
+                  value={username}
+                  onChange={e => {
+                    setUsername(e.target.value);
+                    clearError();
+                  }} />
               </div>
               <div className="row">
                 <label htmlFor="password" className="auth-input-label">Password:</label>
@@ -86,15 +87,19 @@ export default function AuthFormLogin(props) {
                   type="password"
                   name="password"
                   className="auth-input"
-                  value={userInfo.password}
-                  onChange={handleChange} />
+                  value={password}
+                  onChange={e => {
+                    setPassword(e.target.value);
+                    clearError();
+                  }}
+                  />
               </div>
               <div className="row">
                 <button type="submit" className="auth-submit-btn">Login</button>
               </div>
               <div className='row space-between'>
                 <a onClick={handleOpenSignupModal}><p className="auth-check-msg">First time? Sign Up</p></a>
-                <a onClick={() => setUserInfo(demoUser)} ><p className="demo-user-btn">Demo User Login</p></a>
+                <a onClick={() => { setUsername(DEFAULT_USERNAME); setPassword(DEFAULT_PASSWORD); }} ><p className="demo-user-btn">Demo User Login</p></a>
               </div>
             </div>
           </form>
